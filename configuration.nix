@@ -40,7 +40,7 @@
     };
     
     displayManager = {
-      defaultSession = "none+i3";
+      defaultSession = "cinnamon";
     };
 
     desktopManager.cinnamon.enable = true;

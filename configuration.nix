@@ -94,6 +94,7 @@
       xfce.thunar-media-tags-plugin
       xfce.xfce4-terminal
       nodejs_21
+      obsidian
     ];
   };
 
@@ -155,6 +156,10 @@
   # Custom Overlays
   nixpkgs.overlays = [
     
+  ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
   ];
 }
 

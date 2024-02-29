@@ -33,12 +33,12 @@
         greeters.gtk.enable = true;
       };
     };
-    
+
     xkb = {
       layout = "us";
       options = "eurosign:e,caps:super";
     };
-    
+
     displayManager = {
       defaultSession = "cinnamon";
     };
@@ -52,8 +52,8 @@
       extraPackages = with pkgs; [
         arandr
         dmenu
-	i3status
-	i3lock
+        i3status
+        i3lock
       ];
     };
   };
@@ -112,7 +112,10 @@
     gnumake
     rustup
     python3
+    python311Packages.pynvim
     fzf # For neovim telescope plugin
+    xclip # Neovim clipboard provider
+    xsel # Neovim clipboard provider
   ];
 
   # List services that you want to enable:
@@ -127,16 +130,16 @@
     thunderbird = {
       enable = true;
       unitConfig = {
-	Description = "Thunderbird!";
-	After = [ "network.target" ];
-	StartLimitIntervalSec = 300;
-	StartLimitBurst = 5;
+    Description = "Thunderbird!";
+    After = [ "network.target" ];
+    StartLimitIntervalSec = 300;
+    StartLimitBurst = 5;
       };
       serviceConfig = {
         Type = "simple";
-	ExecStart = ["${pkgs.thunderbird}/bin/thunderbird --headless"];
-	Restart = "always";
-	RestartSec = "1s";
+    ExecStart = ["${pkgs.thunderbird}/bin/thunderbird --headless"];
+    Restart = "always";
+    RestartSec = "1s";
       };
       wantedBy = [ "default.target" ];
     };
@@ -155,11 +158,10 @@
 
   # Custom Overlays
   nixpkgs.overlays = [
-    
+
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
   ];
 }
-

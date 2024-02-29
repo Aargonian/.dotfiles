@@ -84,7 +84,6 @@
       ncspot
       calibre
       terminator
-      neovim
       ripgrep
       tree
       xfce.thunar
@@ -96,6 +95,12 @@
       nodejs_21
       obsidian
     ];
+  };
+
+  # Editor
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
   };
 
   # List packages installed in system profile. To search, run:

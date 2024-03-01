@@ -94,8 +94,6 @@
       xfce.xfce4-terminal
       nodejs_21
       obsidian
-      todoist
-      obsidian
     ];
   };
 

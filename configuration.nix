@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, options, ... }:
 
 {
   imports =
@@ -169,4 +169,8 @@
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
   ];
+
+  # Bad bad dirty hack to make generic linux binaries work
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = options.programs.nix-ld.libraries.default ++ (with pkgs; [ stdenv.cc.cc ] );
 }

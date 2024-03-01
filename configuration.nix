@@ -2,19 +2,26 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, options, ... }:
-
+{ config, lib, pkgs, pkgs-unstable, username, hostname, options, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
+  nixpkgs.config = {
+    packageOverrides = pkgs: with pkgs; {
+      unstable = import unstableTarball {
+        config = config.nixpkgs.config;
+      };
+    };
+  };
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "NixosVirtual"; # Define your hostname.
+  networking.hostName = hostname; # Define your hostname.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   time.timeZone = "America/New_York";
 
@@ -72,7 +79,7 @@
   programs.zsh.enable = true;
 
   # Users
-  users.users.aargonian = {
+  users.users.${username} = {
     isNormalUser = true;
     shell = pkgs.zsh;
     initialPassword = "123456";

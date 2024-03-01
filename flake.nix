@@ -3,29 +3,38 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
     let
       lib = nixpkgs.lib;
       system = "aarch64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
       overlays = [
         inputs.neovim-nightly-overlay.overlay
       ];
+      username = "aargonian";
+      hostname = "NixosPersonal";
     in {
 
     nixosConfigurations = {
-      NixosPersonal = lib.nixosSystem {
+      ${hostname} = lib.nixosSystem {
         inherit system;
         modules = [ ./configuration.nix ];
+        specialArgs = {
+          inherit username;
+          inherit hostname;
+          inherit pkgs-unstable;
+        };
       };
     };
     homeConfigurations = {
-      aargonian = home-manager.lib.homeManagerConfiguration {
+      ${username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
           ./home.nix
@@ -33,6 +42,10 @@
             nixpkgs.overlays = overlays;
           })
         ];
+        extraSpecialArgs = {
+          inherit username;
+          inherit pkgs-unstable;
+        };
       };
     };
   };

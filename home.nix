@@ -9,7 +9,7 @@
   ];
 
   home.file = {
-    "~/.config/i3/config".source = configs/i3config;
+    ".config/i3/config".source = configs/i3config;
   };
 
   home.sessionVariables = {

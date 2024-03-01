@@ -6,14 +6,12 @@
     ./user/git.nix
     ./user/packages.nix
     ./user/services.nix
+    ./user/i3.nix
+    ./user/neovim.nix
   ];
 
   home.username = username;
   home.homeDirectory = "/home/${username}";
-
-  home.file = {
-    ".config/i3/config".source = user/i3config;
-  };
 
   home.sessionVariables = {
     EDITOR = "nvim";

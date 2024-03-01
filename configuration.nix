@@ -94,6 +94,8 @@
       xfce.xfce4-terminal
       nodejs_21
       obsidian
+      todoist
+      obsidian
     ];
   };
 
@@ -108,6 +110,7 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
+    file
     cifs-utils
     samba
     gnome.gvfs
@@ -121,6 +124,13 @@
     fzf # For neovim telescope plugin
     xclip # Neovim clipboard provider
     xsel # Neovim clipboard provider
+    lf # Ranger-inspired explorer
+    yt-dlp
+    ripgrep
+    mprocs
+    du-dust
+    zoxide
+    universal-ctags
   ];
 
   # List services that you want to enable:

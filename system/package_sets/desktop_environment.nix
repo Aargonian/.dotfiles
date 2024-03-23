@@ -45,6 +45,20 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
+  programs.thunar.enable = true;
+  programs.thunar.plugins = with pkgs.xfce; [
+    thunar-volman
+  ];
+
+  # Necessary for thunar to mount external drives correctly
+  services.gvfs.enable = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.xserver.libinput.enable = true;
+
+  # Various useful graphics programs
+  environment.systemPackages = with pkgs; [
+    firefox
+    gparted
+  ];
 }

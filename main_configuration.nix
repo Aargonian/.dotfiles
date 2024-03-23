@@ -6,7 +6,6 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
       ./system/user_setup.nix
       ./system/display.nix
       ./system/networking.nix

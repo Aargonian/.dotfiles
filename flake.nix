@@ -47,9 +47,22 @@
     in {
 
     nixosConfigurations = {
-      ${hostname} = lib.nixosSystem {
+      virtual = lib.nixosSystem {
         inherit system;
-        modules = [ ./configuration.nix ];
+        modules = [
+          ./virtual_config.nix
+        ];
+        specialArgs = {
+          inherit username;
+          inherit hostname;
+          inherit pkgs-unstable;
+        };
+      };
+      desktop = lib.nixosSystem {
+        inherit system;
+        modules = [ 
+          ./desktop_config.nix
+        ];
         specialArgs = {
           inherit username;
           inherit hostname;

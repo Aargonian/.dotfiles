@@ -18,6 +18,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Ensure NTFS is supported
+  boot.supportedFilesystems = [ "ntfs" ];
+
   i18n.defaultLocale = "en_US.UTF-8";
 
   system.stateVersion = "23.11";

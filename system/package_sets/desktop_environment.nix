@@ -50,6 +50,9 @@
     thunar-volman
   ];
 
+  # Enable seahorse for password inputs
+  programs.seahorse.enable = true;
+
   # Necessary for thunar to mount external drives correctly
   services.gvfs.enable = true;
 

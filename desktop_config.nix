@@ -13,6 +13,7 @@
       ./system/package_sets/essential.nix
       ./system/package_sets/desktop_environment.nix
       ./system/package_sets/steam.nix
+      ./system/package_sets/rust.nix
     ];
 
   # Use the systemd-boot EFI boot loader.

@@ -11,6 +11,8 @@
       "*.swp"
       "notes"
     ];
-    extraConfig.credential.helper = "libsecret";
+    extraConfig.credential.helper = "${
+        pkgs.git.override { withLibsecret = true; }
+    }/bin/git-credential-libsecret";
   };
 }

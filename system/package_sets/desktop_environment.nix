@@ -53,6 +53,9 @@
   # Enable seahorse for password inputs
   programs.seahorse.enable = true;
 
+  # Enable gnome-keyring for passkey storage
+  services.gnome.gnome-keyring.enable = true;
+
   # Necessary for thunar to mount external drives correctly
   services.gvfs.enable = true;
 

@@ -6,6 +6,8 @@
 
   programs.git = {
     enable = true;
+    userName = "Aaron Gorodetzky";
+    userEmail = "aaron@nytework.com";
     ignores = [
       "*~"
       "*.swp"

@@ -12,81 +12,73 @@
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
     let
       lib = nixpkgs.lib;
-      system = "x86_64-linux";
-      # pkgs = nixpkgs.legacyPackages.${system};
-      # pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
-      pkgs = import nixpkgs {
-        system = system;
+      virtual_system = "aarch64-linux";
+      desktop_system = "x86_64-linux";
+
+      pkgs-desktop = import nixpkgs {
+        system = desktop_system;
         config = {
           allowUnfree = true;
           allowUnfreePredicate = (_: true);
         };
       };
-      pkgs-unstable = import nixpkgs-unstable {
-        system = system;
+      pkgs-desktop-unstable = import nixpkgs-unstable {
+        system = desktop_system;
         config = {
           allowUnfree = true;
           allowUnfreePredicate = (_: true);
         };
       };
+      pkgs-virtual = import nixpkgs {
+        system = virtual_system;
+        config = {
+          allowUnfree = true;
+          allowUnfreePredicate = (_: true);
+        };
+      };
+      pkgs-virtual-unstable = import nixpkgs-unstable {
+        system = virtual_system;
+        config = {
+          allowUnfree = true;
+          allowUnfreePredicate = (_: true);
+        };
+      };
+
       overlays = [
         inputs.neovim-nightly-overlay.overlay
       ];
       username = "aargonian";
       hostname = "NixosPersonal";
-
-      # Primarily used for the develop shell for tauri
-      libraries = with pkgs; [
-        webkitgtk
-        gtk3
-        cairo
-        gdk-pixbuf
-        glib
-        dbus
-        openssl_3
-        librsvg
-      ];
-      packages = with pkgs; [
-        curl
-        wget
-        pkg-config
-        dbus
-        openssl_3
-        glib
-        gtk3
-        libsoup
-        webkitgtk
-        librsvg
-      ];
     in {
 
     nixosConfigurations = {
       virtual = lib.nixosSystem {
-        inherit system;
+        system = virtual_system;
         modules = [
           ./virtual_config.nix
         ];
         specialArgs = {
           inherit username;
           inherit hostname;
-          inherit pkgs-unstable;
+          pkgs-unstable = pkgs-virtual-unstable;
         };
       };
       desktop = lib.nixosSystem {
-        inherit system;
-        modules = [ 
+        system = desktop_system;
+        modules = [
           ./desktop_config.nix
         ];
         specialArgs = {
           inherit username;
           inherit hostname;
-          inherit pkgs-unstable;
+          pkgs-unstable = pkgs-desktop-unstable;
         };
       };
     };
+
     homeConfigurations = {
       ${username} = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+        inherit pkgs-desktop;
         modules = [
           ./home.nix
           ({
@@ -95,16 +87,10 @@
         ];
         extraSpecialArgs = {
           inherit username;
-          inherit pkgs-unstable;
+          pkgs-unstable = pkgs-desktop-unstable;
         };
       };
     };
-    devShells.${system}.default = pkgs.mkShell {
-      buildInputs = packages;
-      shellHook = ''
-          export LD_LIBRARY_PATH=${lib.makeLibraryPath libraries}:$LD_LIBRARY_PATH
-          export XDG_DATA_DIRS=${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}:$XDG_DATA_DIRS
-      '';
-    };
+
   };
 }

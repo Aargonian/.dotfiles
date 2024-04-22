@@ -78,7 +78,7 @@
 
     homeConfigurations = {
       ${username} = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs-desktop;
+        pkgs = pkgs-desktop;
         modules = [
           ./home.nix
           ({

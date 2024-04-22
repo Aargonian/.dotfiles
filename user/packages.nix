@@ -25,6 +25,7 @@
     universal-ctags # Neovim TagBar
     python311Packages.pynvim
     yt-dlp
+    discord
   ];
 
   nixpkgs.config.allowUnfree = true;

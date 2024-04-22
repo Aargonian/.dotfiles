@@ -66,5 +66,6 @@
   environment.systemPackages = with pkgs; [
     firefox
     gparted
+    solaar # Logitech bolt/unifying receivers
   ];
 }

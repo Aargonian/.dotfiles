@@ -14,6 +14,7 @@
       lib = nixpkgs.lib;
       virtual_system = "aarch64-linux";
       desktop_system = "x86_64-linux";
+      laptop_system = "x86_64-linux";
 
       pkgs-desktop = import nixpkgs {
         system = desktop_system;
@@ -67,6 +68,17 @@
         system = desktop_system;
         modules = [
           ./desktop_config.nix
+        ];
+        specialArgs = {
+          inherit username;
+          inherit hostname;
+          pkgs-unstable = pkgs-desktop-unstable;
+        };
+      };
+      laptop = lib.nixosSystem {
+        system = laptop_system;
+        modules = [
+          ./laptop_config.nix
         ];
         specialArgs = {
           inherit username;

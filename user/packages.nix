@@ -26,6 +26,7 @@
     python311Packages.pynvim
     yt-dlp
     discord
+    spotify
   ];
 
   nixpkgs.config.allowUnfree = true;

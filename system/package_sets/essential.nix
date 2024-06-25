@@ -6,6 +6,7 @@
     file
     cifs-utils
     gnome.gvfs
+    htop
 
     # Build Tools
     git

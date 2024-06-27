@@ -76,5 +76,8 @@
     firefox
     gparted
     solaar # Logitech bolt/unifying receivers
+    via # QMK VIA Support
   ];
+
+  services.udev.packages = [ pkgs.via ];
 }

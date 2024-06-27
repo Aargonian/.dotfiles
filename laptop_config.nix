@@ -31,4 +31,12 @@
   # Bad bad dirty hack to make generic linux binaries work
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = options.programs.nix-ld.libraries.default ++ (with pkgs; [ stdenv.cc.cc ] );
+
+  # QMK Support for the Framework 16 Keyboard
+  hardware.keyboard.qmk.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    ungoogled-chromium # To use Framework's VIA interface
+    power-profiles-daemon
+  ];
 }

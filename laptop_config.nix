@@ -39,4 +39,13 @@
     ungoogled-chromium # To use Framework's VIA interface
     power-profiles-daemon
   ];
+
+  services.power-profiles-daemon.enable = true;
+
+  services.logind = {
+    powerKey = "hibernate";
+    powerKeyLongPress = "poweroff";
+    lidSwitch = "hibernate";
+    lidSwitchExternalPower = "hibernate";
+  };
 }

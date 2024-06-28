@@ -27,6 +27,7 @@
     yt-dlp
     discord
     spotify
+    todoist-electron
   ];
 
   nixpkgs.config.allowUnfree = true;

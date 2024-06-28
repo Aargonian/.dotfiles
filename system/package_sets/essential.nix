@@ -9,6 +9,11 @@
     htop
     nmon
 
+    # iPhone Connection
+    libimobiledevice
+    ifuse
+    idevicerestore
+
     # Build Tools
     git
     cmakeMinimal

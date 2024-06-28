@@ -26,4 +26,10 @@
       wantedBy = [ "default.target" ];
     };
   };
+
+  # iPhone Connection Capability
+  services.usbmuxd = {
+    enable = true;
+    package = pkgs.usbmuxd2;
+  }
 }

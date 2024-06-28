@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    neovim-nightly
     firefox
     thunderbird
     nerdfonts
@@ -16,7 +15,7 @@
     xfce.thunar-archive-plugin
     xfce.thunar-media-tags-plugin
     xfce.xfce4-terminal
-    nodejs_21
+    nodejs_22
     obsidian
     fzf # For neovim telescope plugin
     xclip # Neovim clipboard provider

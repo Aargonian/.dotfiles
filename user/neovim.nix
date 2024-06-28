@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    neovim-nightly
+    neovim
     ripgrep # Mostly for Neovim telescope
     fzf # For neovim telescope plugin
     xclip # Neovim clipboard provider

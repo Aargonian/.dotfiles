@@ -1,11 +1,15 @@
 {pkgs, lib, ...}:
 {
   # Enable the X11 windowing system.
+  services.displayManager = {
+      sddm.enable = false;
+      defaultSession = "cinnamon";
+  };
+
   services.xserver = {
     enable = true;
 
     displayManager = {
-      sddm.enable = false;
       gdm.enable = false;
       lightdm = {
         enable = true;
@@ -17,10 +21,6 @@
     xkb = {
       layout = "us";
       options = "eurosign:e,caps:super";
-    };
-
-    displayManager = {
-      defaultSession = "cinnamon";
     };
 
     desktopManager.cinnamon.enable = true;
@@ -60,7 +60,7 @@
   services.gvfs.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   # DisplayLink Driver Support
   services.xserver.videoDrivers = [ "displaylink" "modesetting" ];

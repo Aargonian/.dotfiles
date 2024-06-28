@@ -7,6 +7,7 @@
     cifs-utils
     gnome.gvfs
     htop
+    nmon
 
     # Build Tools
     git

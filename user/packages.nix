@@ -25,6 +25,7 @@
     universal-ctags # Neovim TagBar
     python311Packages.pynvim
     yt-dlp
+    ffmpeg
     discord
     spotify
     todoist-electron

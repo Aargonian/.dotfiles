@@ -77,6 +77,7 @@
     gparted
     solaar # Logitech bolt/unifying receivers
     via # QMK VIA Support
+    arduino-ide # Arduino IDE 2.x
   ];
 
   services.udev.packages = [ pkgs.via ];

@@ -8,7 +8,7 @@
     isNormalUser = true;
     shell = pkgs.zsh;
     initialPassword = "123456";
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "dialout" ]; # Enable ‘sudo’ for the user.
   };
 
   # Editor

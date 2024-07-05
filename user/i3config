@@ -381,7 +381,7 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id start_conky_maia
 exec --no-startup-id albert
-exec_always --no-startup-id setxkbmap -option caps:super
+exec_always --no-startup-id setxkbmap -option ctrl:nocaps
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 

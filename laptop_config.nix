@@ -38,6 +38,7 @@
   environment.systemPackages = with pkgs; [
     ungoogled-chromium # To use Framework's VIA interface
     power-profiles-daemon
+    fprintd # To use Framework's fingerprint reader
   ];
 
   services.power-profiles-daemon.enable = true;
@@ -48,4 +49,8 @@
     lidSwitch = "hibernate";
     lidSwitchExternalPower = "hibernate";
   };
+
+  # Setup Fprintd for framework laptop
+  # Note: Remember to run fprind-enroll on first setup
+  services.fprintd.enable = true;
 }

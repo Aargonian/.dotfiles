@@ -75,7 +75,7 @@
   environment.systemPackages = with pkgs; [
     firefox
     gparted
-    solaar # Logitech bolt/unifying receivers
+    solaar # Logitech unifying receivers
     via # QMK VIA Support
     arduino-ide # Arduino IDE 2.x
   ];

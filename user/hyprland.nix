@@ -66,6 +66,7 @@
         kb_options = "ctrl:nocaps";
         follow_mouse = "1";
         touchpad = {
+          clickfinger_behavior = true;
           natural_scroll = "yes";
           disable_while_typing = "yes";
         };
@@ -134,7 +135,7 @@
       };
       gestures = {
           # See https://wiki.hyprland.org/Configuring/Variables/ for more
-          workspace_swipe = "on";
+          workspace_swipe = true;
       };
       misc = {
           # See https://wiki.hyprland.org/Configuring/Variables/ for more

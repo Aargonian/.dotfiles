@@ -21,16 +21,14 @@
         ];
 
         modules-left = [
-            "sway/mode"
-            "sway/workspaces"
+            "hyprland/workspaces"
             "custom/arrow10"
-            "sway/window"
+            "hyprland/window"
+            "hyprland/submap"
         ];
 
         modules-right = [
             "custom/arrow9"
-            "pulseaudio"
-            "custom/arrow8"
             "network"
             "custom/arrow7"
             "memory"
@@ -41,7 +39,7 @@
             "custom/arrow4"
             "battery"
             "custom/arrow3"
-            "sway/language"
+            "pulseaudio"
             "custom/arrow2"
             "tray"
             "clock#date"
@@ -50,6 +48,18 @@
         ];
 
         # Modules
+        "hyprland/workspaces" = {
+          format = "{name}";
+          format-window-separator = "\n";
+          active-only = false;
+          all-outputs = true;
+          show-special = true;
+          move-to-monitor = true;
+          persistent-workspaces = {
+            "*" = 10;
+          };
+        };
+
         battery = {
             interval = 10;
             states = {
@@ -74,8 +84,8 @@
         };
 
         "clock#time" = {
-            "interval" = 10;
-            "format" = "{:%H:%M}";
+            "interval" = 1;
+            "format" = "{:%H:%M:%S}";
             "tooltip" = false;
         };
 
@@ -106,7 +116,7 @@
 
         "memory" = {
             "interval" = 5;
-            "format" = "  {used:0.1f}G/{total:0.1f}G";
+            "format" = "🧠 {used:0.1f}G/{total:0.1f}G";
             "states" = {
                 "warning" = 70;
                 "critical" = 90;
@@ -116,29 +126,11 @@
 
         "network" = {
             "interval" = 5;
-            "format-wifi" = "  {essid} ({signalStrength}%)";
+            "format-wifi" = "   {essid} ({signalStrength}% @ {frequency}Ghz) ({ifname}) (↓{bandwidthDownBits}/↑{bandwidthUpBits})";
             "format-ethernet" = "  {ifname}";
             "format-disconnected" = "No connection";
             "format-alt" = "  {ipaddr}/{cidr}";
             "tooltip" = false;
-        };
-
-        "sway/mode" = {
-            "format" = "{}";
-            "tooltip" = false;
-        };
-
-        "sway/window" = {
-            "format" = "{}";
-            "max-length" = 30;
-            "tooltip" = false;
-        };
-
-        "sway/workspaces" = {
-            "disable-scroll-wraparound" = true;
-            "smooth-scrolling-threshold" = 4;
-            "enable-bar-scroll" = true;
-            "format" = "{name}";
         };
 
         "pulseaudio" = {

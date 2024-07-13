@@ -1,9 +1,20 @@
-{ inputs, anyrun, pkgs, system, ... }:
+{ inputs, pkgs, ... }:
 {
-  imports = [inputs.anyrun.homeManagerModules.default];
+  imports = [
+    inputs.anyrun.homeManagerModules.default
+    ./waybar
+  ];
 
   home.packages = with pkgs; [
+    # Screenshot Utilities
+    grim
+    slurp
     dunst
+
+    # Utilities
+    wl-clipboard
+    wl-screenrec
+    wlr-randr
   ];
 
   programs.anyrun = {
@@ -35,8 +46,8 @@
     #plugins = [
     #  inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars
     #];
-    plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars
+    plugins =  with inputs.hyprland-plugins.packages.${pkgs.system}; [
+      hyprbars
     ];
     settings = {
       "$mod" = "CONTROL";
@@ -189,5 +200,12 @@
         "$mod, mouse_up, workspace, e-1"
       ];
     };
+  };
+
+  # Making things not break in Wayland
+  home.sessionVariables = {
+    QT_QPA_PLATFORM = "wayland";
+    SDL_VIDEODRIVER = "wayland";
+    XDG_SESSION_TYPE = "wayland";
   };
 }

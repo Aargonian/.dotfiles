@@ -136,6 +136,7 @@
       gestures = {
           # See https://wiki.hyprland.org/Configuring/Variables/ for more
           workspace_swipe = true;
+          workspace_swipe_fingers = 4;
       };
       misc = {
           # See https://wiki.hyprland.org/Configuring/Variables/ for more

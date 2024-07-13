@@ -20,6 +20,12 @@
       url = "github:anyrun-org/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Provides split workspace behavior across monitors
+    split-monitor-workspaces = {
+      url = "github:Duckonaut/split-monitor-workspaces";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 
   outputs = {
@@ -29,6 +35,7 @@
     home-manager,
     hyprland,
     anyrun,
+    split-monitor-workspaces,
     ...
     } @ inputs:
     let

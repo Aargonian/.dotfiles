@@ -48,6 +48,7 @@
     #];
     plugins =  with inputs.hyprland-plugins.packages.${pkgs.system}; [
       hyprbars
+      inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
     ];
     settings = {
       "$mod" = "CONTROL";
@@ -74,7 +75,6 @@
       };
 
       exec-once = [
-        "waybar"
         "hyprpaper"
         "firefox"
       ];

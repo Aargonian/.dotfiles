@@ -16,9 +16,6 @@
         layer = "top";
         position = "bottom";
         height = 32;
-        output = [
-          "eDP-2"
-        ];
 
         modules-left = [
             "hyprland/workspaces"

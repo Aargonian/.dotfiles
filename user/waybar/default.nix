@@ -63,17 +63,17 @@
         };
 
         battery = {
-            interval = 10;
+            interval = 2;
             states = {
                 warning = 30;
                 critical =  15;
             };
             format-time = "{H}:{M:02}";
-            format = "{icon} {capacity}% ({time})";
+            format = "{icon} {capacity}% ({time}) ({power:.2f}W)";
             format-charging = " {capacity}% ({time})";
             format-charging-full = " {capacity}%";
             format-full = "{icon} {capacity}%";
-            format-alt = "{icon} {power}W";
+            format-alt = "{icon} Health: {health}% {power:.2f}W";
             # TODO: Fix the spacing on the icons
             format-icons = [
                 "  "
@@ -82,6 +82,7 @@
                 "  "
                 "  "
             ];
+            bat-compatibility = true;
             tooltip = false;
         };
 

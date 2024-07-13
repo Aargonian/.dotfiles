@@ -18,7 +18,7 @@
 @define-color purple    #301934;
 @define-color aqua  #689d6a;
 @define-color gray  #a89984;
-@define-color brgray    #928374;
+@define-color brgray    #706152;
 @define-color brred #fb4934;
 @define-color brgreen   #b8bb26;
 @define-color bryellow  #fabd2f;
@@ -37,13 +37,14 @@
 @define-color active  @purple;
 @define-color sound @brpurple;
 @define-color network   @purple;
-@define-color memory    @brgray;
+@define-color memory    @gray;
 @define-color cpu   @blue;
 @define-color temp  @brgreen;
 @define-color layout    @bryellow;
 @define-color battery   @yellow;
 @define-color date  @black;
 @define-color time  @white;
+@define-color disk @brgray;
 
 /* Reset all styles */
 * {
@@ -164,6 +165,11 @@
     color: @white;
 }
 
+#disk {
+    background: @disk;
+    color: @white;
+}
+
 #memory {
     background: @memory;
     color: @black;
@@ -242,13 +248,13 @@
 #custom-arrow7 {
     font-size: 24pt;
     color: @memory;
-    background: @network;
+    background: @disk;
 }
 
 #custom-arrow8 {
     font-size: 24pt;
-    color: @network;
-    background: transparent;
+    color: @disk;
+    background: @network;
 }
 
 #custom-arrow9 {

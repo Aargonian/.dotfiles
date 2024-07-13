@@ -30,6 +30,8 @@
         modules-right = [
             "custom/arrow9"
             "network"
+            "custom/arrow8"
+            "disk"
             "custom/arrow7"
             "memory"
             "custom/arrow6"
@@ -81,6 +83,13 @@
                 "  "
             ];
             tooltip = false;
+        };
+
+        disk = {
+          path = "/";
+          interval = 30;
+          unit = "GiB";
+          format = "💾  {specific_used:0.1f} / {specific_total:0.1f}Gb ({percentage_used}%)";
         };
 
         "clock#time" = {

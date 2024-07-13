@@ -9,23 +9,25 @@
   programs.anyrun = {
     enable = true;
     config = {
-      plugins = [
-        inputs.anyrun.packages.${pkgs.system}.applications
-        inputs.anyrun.packages.${pkgs.system}.rink
-        inputs.anyrun.packages.${pkgs.system}.shell
-        inputs.anyrun.packages.${pkgs.system}.kidex
+      plugins = with inputs.anyrun.packages.${pkgs.system}; [
+        applications
+        rink
+        # randr
+        shell
+        kidex
+        symbols
       ];
-      x = { fraction = 0.5; };
-      y = { fraction = 0.3; };
-      width = { fraction = 0.3; };
+
+      width.fraction = 0.25;
+      y.fraction = 0.3;
+      hidePluginInfo = true;
+      closeOnClick = true;
       hideIcons = false;
-      ignoreExclusiveZones = false;
-      layer = "overlay";
-      hidePluginInfo = false;
-      closeOnClick = false;
       showResultsImmediately = true;
       maxEntries = null;
     };
+
+    extraCss = builtins.readFile(./. + "/anyrun_style.css");
   };
 
   wayland.windowManager.hyprland = {

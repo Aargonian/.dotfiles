@@ -1,6 +1,10 @@
 { inputs, anyrun, pkgs, system, ... }:
 {
-  imports = [innputs.anyrun.homeManagerModules.default];
+  imports = [inputs.anyrun.homeManagerModules.default];
+
+  home.packages = with pkgs; [
+    dunst
+  ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -10,7 +14,8 @@
     settings = {
       "$mod" = "CONTROL";
       bind = [
-        "$mod, p, exec, dmenu_run"
+        "$mod, p, exec, anyrun"
+        "$mod, t, exec, xfce4-terminal"
         ", Print, exec, grimblast copy area"
       ]
       ++ (
@@ -19,14 +24,23 @@
         builtins.concatLists (builtins.genList (
           x: let
             ws = let
-              c = (c + 1) / 10;
+              c = (x + 1) / 10;
             in
               builtins.toString (x + 1 - (c * 10));
           in [
+            "$mod, ${ws}, workspace, ${toString (x + 1)}"
+            "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
           ]
         )
         10)
       );
+
+      monitor = [
+        "eDP-2,2560x1600@165,auto,1" # Main Laptop Screen
+        "DVI-I-2,preferred,auto-left,1"
+        "DVI-I-1,preferred,auto-right,1"
+        ",preferred,auto,1"
+      ];
     };
   };
 
@@ -34,7 +48,10 @@
     enable = true;
     config = {
       plugins = [
-        "{inputs.anyrun.packages.${pkgs.system}.anyrun-with-all-plugins}/lib/kidex"
+        inputs.anyrun.packages.${pkgs.system}.applications
+        inputs.anyrun.packages.${pkgs.system}.rink
+        inputs.anyrun.packages.${pkgs.system}.shell
+        inputs.anyrun.packages.${pkgs.system}.kidex
       ];
       x = { fraction = 0.5; };
       y = { fraction = 0.3; };

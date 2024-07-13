@@ -8,7 +8,7 @@
     ./user/services.nix
     ./user/i3.nix
     ./user/neovim.nix
-    #./user/hyprland.nix
+    ./user/hyprland.nix
   ];
 
   home.username = username;

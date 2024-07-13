@@ -59,6 +59,8 @@
         "DVI-I-1,preferred,auto-right,1"
         "DP-10,preferred,auto-right,1"
         "DP-11,preferred,auto-left,1"
+        "DP-12,preferred,auto-right,1"
+        "DP-14,preferred,auto-left,1"
         ",preferred,auto,1"
       ];
 

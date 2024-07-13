@@ -223,61 +223,61 @@
 }
 
 #custom-arrow1 {
-    font-size: 24pt;
+    font-size: 20pt;
     color: @time;
     background: @date;
 }
 
 #custom-arrow2 {
-    font-size: 24pt;
+    font-size: 20pt;
     color: @date;
     background: @sound;
 }
 
 #custom-arrow3 {
-    font-size: 24pt;
+    font-size: 20pt;
     color: @sound;
     background: @battery;
 }
 
 #custom-arrow4 {
-    font-size: 24pt;
+    font-size: 20pt;
     color: @battery;
     background: @temp;
 }
 
 #custom-arrow5 {
-    font-size: 24pt;
+    font-size: 20pt;
     color: @temp;
     background: @cpu;
 }
 
 #custom-arrow6 {
-    font-size: 24pt;
+    font-size: 20pt;
     color: @cpu;
     background: @memory;
 }
 
 #custom-arrow7 {
-    font-size: 24pt;
+    font-size: 20pt;
     color: @memory;
     background: @disk;
 }
 
 #custom-arrow8 {
-    font-size: 24pt;
+    font-size: 20pt;
     color: @disk;
     background: @network;
 }
 
 #custom-arrow9 {
-    font-size: 24pt;
+    font-size: 20pt;
     color: @network;
     background: transparent;
 }
 
 #custom-arrow10 {
-    font-size: 24pt;
+    font-size: 20pt;
     color: @unfocused;
     background: transparent;
 }

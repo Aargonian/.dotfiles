@@ -142,7 +142,10 @@
           # See https://wiki.hyprland.org/Configuring/Variables/ for more
           force_default_wallpaper = -1; # Set to 0 or 1 to disable the anime mascot wallpapers
       };
-      windowrulev2 = "suppressevent maximize, class:.*"; # You'll probably like this.
+      windowrulev2 = [
+        "suppressevent maximize, class:.*" # You'll probably like this.
+        "opacity 0.95 0.50, title:(.*)$"
+      ];
 
       bind = [
         "$mod, p, exec, anyrun"

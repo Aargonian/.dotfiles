@@ -4,11 +4,30 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    home-manager = {
+      url = "github:nix-community/home-manager/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland = {
+      url = "github:hyprwm/Hyprland/v0.39.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    anyrun = {
+      url = "github:anyrun-org/anyrun";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgs-unstable,
+    home-manager,
+    hyprland,
+    anyrun,
+    ...
+    } @ inputs:
     let
       lib = nixpkgs.lib;
       virtual_system = "aarch64-linux";
@@ -79,6 +98,7 @@
         specialArgs = {
           inherit username;
           inherit hostname;
+          inherit inputs;
           pkgs-unstable = pkgs-desktop-unstable;
         };
       };
@@ -92,6 +112,8 @@
         ];
         extraSpecialArgs = {
           inherit username;
+          inherit inputs;
+          inherit anyrun;
           pkgs-unstable = pkgs-desktop-unstable;
         };
       };

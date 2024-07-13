@@ -1,8 +1,8 @@
-{pkgs, lib, ...}:
+{inputs, pkgs, lib, ...}:
 {
   # Enable the X11 windowing system.
   services.displayManager = {
-      sddm.enable = false;
+      sddm.enable = true;
       defaultSession = "cinnamon";
   };
 
@@ -12,7 +12,7 @@
     displayManager = {
       gdm.enable = false;
       lightdm = {
-        enable = true;
+        enable = false;
         greeters.slick.enable = false;
         greeters.gtk.enable = true;
       };
@@ -20,22 +20,22 @@
 
     xkb = {
       layout = "us";
-      options = "eurosign:e,caps:super";
+      options = "eurosign:e,ctrl:nocaps";
     };
 
     desktopManager.cinnamon.enable = true;
     desktopManager.xfce.enable = true;
 
-    windowManager.i3 = {
-      package = pkgs.i3-gaps;
-      enable = true;
-      extraPackages = with pkgs; [
-        arandr
-        dmenu
-        i3status
-        i3lock
-      ];
-    };
+    #windowManager.i3 = {
+    #  package = pkgs.i3-gaps;
+    #  enable = true;
+    #  extraPackages = with pkgs; [
+    #    arandr
+    #    dmenu
+    #    i3status
+    #    i3lock
+    #  ];
+    #};
   };
 
   # Enable CUPS to print documents.
@@ -82,4 +82,10 @@
   ];
 
   services.udev.packages = [ pkgs.via ];
+
+  # Enable Hyprland
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+  };
 }

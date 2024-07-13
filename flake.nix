@@ -10,8 +10,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland/v0.39.1";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    };
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
     };
     anyrun = {
       url = "github:anyrun-org/anyrun";
@@ -43,13 +46,6 @@
       };
       pkgs-desktop-unstable = import nixpkgs-unstable {
         system = desktop_system;
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = (_: true);
-        };
-      };
-      pkgs-virtual = import nixpkgs {
-        system = virtual_system;
         config = {
           allowUnfree = true;
           allowUnfreePredicate = (_: true);
@@ -108,6 +104,7 @@
       ${username} = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgs-desktop;
         modules = [
+          hyprland.homeManagerModules.default
           ./home.nix
         ];
         extraSpecialArgs = {

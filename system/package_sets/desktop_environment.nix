@@ -1,11 +1,6 @@
 {inputs, pkgs, lib, ...}:
 {
   # Enable the X11 windowing system.
-  services.displayManager = {
-      sddm.enable = true;
-      defaultSession = "cinnamon";
-  };
-
   services.xserver = {
     enable = true;
 
@@ -23,8 +18,11 @@
       options = "eurosign:e,ctrl:nocaps";
     };
 
-    desktopManager.cinnamon.enable = true;
-    desktopManager.xfce.enable = true;
+    desktopManager = {
+      cinnamon.enable = true;
+      xfce.enable = true;
+      plasma6.enable = true;
+    };
 
     #windowManager.i3 = {
     #  package = pkgs.i3-gaps;
@@ -38,12 +36,18 @@
     #};
   };
 
+  #services.displayManager = {
+  #    sddm.enable = true;
+  #    defaultSession = "plasma";
+  #};
+
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.enable = false;
 
   programs.thunar.enable = true;
   programs.thunar.plugins = with pkgs.xfce; [
@@ -51,7 +55,7 @@
   ];
 
   # Enable seahorse for password inputs
-  programs.seahorse.enable = true;
+  programs.seahorse.enable = false;
 
   # Enable gnome-keyring for passkey storage
   services.gnome.gnome-keyring.enable = true;
@@ -68,6 +72,13 @@
   services.xserver.displayManager.sessionCommands = ''
       ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 2 0
   '';
+
+  # Make QT Apps look like GTK/Gnome Dark Theme
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+    style = "adwaita-dark";
+  };
 
   # Note: The following command may need to be ran before the DL driver will work:
   # nix-prefetch-url --name displaylink-580.zip https://www.synaptics.com/sites/default/files/exe_files/2023-08/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu5.8-EXE.zip

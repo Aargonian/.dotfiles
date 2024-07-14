@@ -5,6 +5,7 @@
     ./waybar
   ];
 
+
   home.packages = with pkgs; [
     # Screenshot Utilities
     grim
@@ -15,6 +16,14 @@
     wl-clipboard
     wl-screenrec
     wlr-randr
+
+    # We need a polkit agent
+    lxqt.lxqt-policykit
+
+    # Screensharing
+    xwaylandvideobridge
+    xdg-desktop-portal-hyprland
+    xdg-desktop-portal-gtk
   ];
 
   programs.anyrun = {
@@ -58,8 +67,9 @@
         "DVI-I-2,preferred,auto-left,1"
         "DVI-I-1,preferred,auto-right,1"
         "DP-10,preferred,auto-right,1"
-        "DP-11,preferred,auto-left,1"
+        "DP-11,preferred,auto-right,1"
         "DP-12,preferred,auto-right,1"
+        "DP-13,preferred,auto-left,1"
         "DP-14,preferred,auto-left,1"
         ",preferred,auto,1"
       ];
@@ -78,7 +88,7 @@
 
       exec-once = [
         "hyprpaper"
-        "firefox"
+        "lxqt-policykit-agent"
       ];
 
       general = {

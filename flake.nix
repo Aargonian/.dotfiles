@@ -79,6 +79,7 @@
         specialArgs = {
           inherit username;
           inherit hostname;
+          inherit inputs;
           pkgs-unstable = pkgs-virtual-unstable;
         };
       };
@@ -90,6 +91,7 @@
         specialArgs = {
           inherit username;
           inherit hostname;
+          inherit inputs;
           pkgs-unstable = pkgs-desktop-unstable;
         };
       };

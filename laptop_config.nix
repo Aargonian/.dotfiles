@@ -53,4 +53,11 @@
   # Setup Fprintd for framework laptop
   # Note: Remember to run fprind-enroll on first setup
   services.fprintd.enable = true;
+
+  # Mount the big data partition
+  fileSystems."/run/media/aargonian/SteamSamsung" = {
+    device = "/dev/disk/by-uuid/3428B3C628B38580";
+    fsType = "ntfs-3g";
+    options = [ "rw" "user" "nofail"];
+  };
 }

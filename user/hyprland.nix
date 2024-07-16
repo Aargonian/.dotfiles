@@ -159,14 +159,22 @@
         "opacity 0.95 0.50, title:(.*)$"
       ];
 
+  # Making things not break in Wayland
+      env = [
+        "QT_QPA_PLATFORM,wayland;xcb,"
+        "GDK_BACKEND,wayland,x11,"
+        "SDL_VIDEODRIVER,wayland"
+        "XDG_SESSION_TYPE,wayland"
+        "XDG_SESSION_DESKTOP,Hyprland"
+        "XDG_CURRENT_DESKTOP,Hyprland"
+        "CLUTTER_BACKEND,wayland"
+      ];
+
       bind = [
         "$mod, p, exec, anyrun"
         "$mod, Return, exec, xfce4-terminal"
         ", Print, exec, grimblast copy area"
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-        #"$mod, Q, exec, $terminal"
-        #"$mod, M, exit,"
-        #"$mod, E, exec, $fileManager"
         #"$mod, V, togglefloating,"
         #"$mod, R, exec, $menu"
         #"$mod, P, pseudo, # dwindle"
@@ -217,12 +225,5 @@
         "$mod, mouse_up, workspace, e-1"
       ];
     };
-  };
-
-  # Making things not break in Wayland
-  home.sessionVariables = {
-    QT_QPA_PLATFORM = "wayland";
-    SDL_VIDEODRIVER = "wayland";
-    XDG_SESSION_TYPE = "wayland";
   };
 }

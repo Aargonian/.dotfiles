@@ -6,8 +6,11 @@
     shellAliases = {
       vim = "nvim";
     };
+    sessionVariables = {
+      PATH = "$PATH:$HOME/bin";
+    };
     oh-my-zsh = {
-      enable = true;
+      enable = false;
       theme = "agnoster";
     };
   };

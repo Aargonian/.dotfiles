@@ -12,6 +12,9 @@
     slurp
     dunst
 
+    # Wallpaper
+    hyprpaper
+
     # Utilities
     wl-clipboard
     wl-screenrec
@@ -60,7 +63,7 @@
       inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
     ];
     settings = {
-      "$mod" = "CONTROL";
+      "$mod" = "Mod4";
 
       monitor = [
         "eDP-2,2560x1600@165,auto,1" # Main Laptop Screen
@@ -68,7 +71,7 @@
         "DVI-I-1,preferred,auto-right,1"
         "DP-10,preferred,auto-right,1"
         "DP-11,preferred,auto-right,1"
-        "DP-12,preferred,auto-right,1"
+        "DP-12,preferred,auto-left,1"
         "DP-13,preferred,auto-left,1"
         "DP-14,preferred,auto-left,1"
         ",preferred,auto,1"
@@ -76,7 +79,7 @@
 
       input = {
         kb_layout = "us";
-        kb_options = "ctrl:nocaps";
+        kb_options = "ctrl:nocaps,altwin:swap_alt_win";
         follow_mouse = "1";
         touchpad = {
           clickfinger_behavior = true;

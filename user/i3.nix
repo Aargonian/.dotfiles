@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
-  imports = [ ./picom.nix ];
+  imports = [
+    ./picom.nix
+    ./i3bar.nix
+  ];
   home.packages = with pkgs; [
     # We need xorg
     xorg.xinit
@@ -39,14 +42,14 @@
     enable = true;
     package = pkgs.i3-gaps;
     config = {
-      modifier = "Control";
+      modifier = "Mod4";
       fonts = {
         names = [ "xft:URWGothic-Book 11" ];
         style = "Bold Semi-Condensed";
         size = 11.0;
       };
       floating = {
-        modifier = "Control";
+        modifier = "Mod4";
       };
 
       startup = [
@@ -55,13 +58,14 @@
         { command = "xrandr --output DVI-I-1 --auto --right-of eDP-2"; always = false; }
         { command = "xrandr --output DP-10 --auto --right-of eDP-2"; always = false; }
         { command = "xrandr --output DP-11 --auto --right-of eDP-2"; always = false; }
-        { command = "xrandr --output DP-12 --auto --right-of eDP-2"; always = false; }
+        { command = "xrandr --output DP-5 --auto --left-of eDP-2"; always = false; }
+        { command = "xrandr --output DP-12 --auto --left-of eDP-2"; always = false; }
         { command = "xrandr --output DP-13 --auto --left-of eDP-2"; always = false; }
         { command = "xrandr --output DP-14 --auto --left-of eDP-2"; always = false; }
         { command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"; always = false; }
         { command = "sleep 1 && picom"; always = false; }
         { command = "pa-applet"; always = false; }
-        { command = "setxkbmap -layout us -option ctrl:nocaps"; always = true; }
+        { command = "setxkbmap -layout us -option ctrl:nocaps,altwin:swap_alt_win"; always = true; }
         { command = "feh --bg-scale $HOME/.background-image"; always = true; }
       ];
 
@@ -76,8 +80,15 @@
 
       window.border = 4;
 
+      bars = [
+        {
+          position = "bottom";
+          statusCommand = "${pkgs.i3status}/bin/i3status";
+        }
+      ];
+
       # Keybindings
-      keybindings = let modifier = "Control"; in {
+      keybindings = let modifier = "Mod4"; in {
         "${modifier}+p" = "exec dmenu_run";
         "${modifier}+Return" = "exec xfce4-terminal";
         "Print" = "exec grimblast copy area";

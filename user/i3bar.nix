@@ -7,10 +7,61 @@
     siji
   ];
 
-  # Waybar status bar for hyprland
-  programs.waybar = {
+  programs.i3status = {
     enable = true;
-    style = ./. + "/style.css";
+    general = {
+      colors = true;
+      interval = 1;
+    };
+    modules = {
+      "wireless __first__" = {
+        position = 1;
+        settings = {
+          format_up = "W: (%quality at %essid) %ip";
+          format_down = "W: Down";
+        };
+      };
+      "battery all" = {
+        position = 2;
+        settings = { format = "%status %percentage %remaining"; };
+      };
+
+      "disk /" = {
+        position = 3;
+        settings = { format = "%avail"; };
+      };
+
+      load = {
+        position = 4;
+        settings = { format = "%1min"; };
+      };
+
+      memory = {
+        position = 5;
+        settings = {
+          format = "%used | %available";
+          threshold_degraded = "1G";
+          format_degraded = "MEMORY < %available";
+        };
+      };
+
+      "volume master" = {
+        position = 6;
+        settings = {
+          format = "♪ %volume";
+          format_muted = "♪ muted (%volume)";
+          device = "pulse:1";
+        };
+      };
+
+      "tztime local" = {
+        position = 7;
+        settings = { format = "%Y-%m-%d %H:%M:%S"; };
+      };
+    };
+
+    #style = ./. + "/style.css";
+    /*
     settings = {
       mainBar = {
         layer = "top";
@@ -229,6 +280,6 @@
         };
       };
     };
-    systemd.enable = true;
+    */
   };
 }

@@ -47,7 +47,7 @@
     powerKey = "hibernate";
     powerKeyLongPress = "poweroff";
     lidSwitch = "hibernate";
-    lidSwitchExternalPower = "hibernate";
+    lidSwitchExternalPower = "ignore";
   };
 
   # Setup Fprintd for framework laptop

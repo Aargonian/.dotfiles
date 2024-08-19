@@ -35,5 +35,12 @@
 
   # Bad bad dirty hack to make generic linux binaries work
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = options.programs.nix-ld.libraries.default ++ (with pkgs; [ stdenv.cc.cc ] );
+  programs.nix-ld.libraries = options.programs.nix-ld.libraries.default ++ (with pkgs; [
+    stdenv.cc.cc
+    xorg.libX11
+    xorg.libXcursor
+    xorg.libxcb
+    xorg.libXi
+    libxkbcommon
+  ]);
 }

@@ -92,9 +92,9 @@
         "${modifier}+p" = "exec dmenu_run";
         "${modifier}+Return" = "exec xfce4-terminal";
         "Print" = "exec grimblast copy area";
-        "${modifier}+Shift+k" = "kill";
+        "${modifier}+Shift+c" = "kill";
         "${modifier}+Shift+t" = "exec pseudo"; # No direct equivalent for pseudotile
-        "${modifier}+V" = "floating toggle"; # Toggle floating
+        "${modifier}+Space" = "floating toggle"; # Toggle floating
         "${modifier}+Shift+space" = "floating toggle"; # Equivalent to toggle floating
 
         # Move focus
@@ -102,6 +102,25 @@
         "${modifier}+j" = "focus down";
         "${modifier}+k" = "focus up";
         "${modifier}+l" = "focus right";
+
+        # Move Window
+        "${modifier}+Shift+h" = "move left";
+        "${modifier}+Shift+j" = "move down";
+        "${modifier}+Shift+k" = "move up";
+        "${modifier}+Shift+l" = "move right";
+
+        # Change tiling mode
+        "${modifier}+b" = "split h;exec notify-send 'tile horizontally'";
+        "${modifier}+v" = "split v;exec notify-send 'tile vertically'";
+        "${modifier}+q" = "split toggle";
+
+        # Toggle window fullscreen
+        "${modifier}+f" = "fullscreen toggle";
+
+        # Change container layout (stacked, tabbed, toggle split)
+        "${modifier}+s" = "layout stacking";
+        "${modifier}+t" = "layout tabbed";
+        "${modifier}+e" = "layout toggle split";
 
         # Workspace switching
         "${modifier}+1" = "workspace 1";
@@ -132,7 +151,7 @@
         "${modifier}+button3" = "resize";
 
         # Special workspace
-        "${modifier}+S" = "exec --no-startup-id scratchpad show";
+        #"${modifier}+S" = "exec --no-startup-id scratchpad show";
         "${modifier}+Shift+S" = "exec --no-startup-id move container to scratchpad";
       };
     };
@@ -213,10 +232,6 @@
 #bindsym ${modifier}+Right focus right
 #
 ## move focused window
-#bindsym ${modifier}+Shift+h move left
-#bindsym ${modifier}+Shift+j move down
-#bindsym ${modifier}+Shift+k move up
-#bindsym ${modifier}+Shift+l move right
 #
 ## alternatively, you can use the cursor keys:
 #bindsym ${modifier}+Shift+Left move left
@@ -225,17 +240,8 @@
 #bindsym ${modifier}+Shift+Right move right
 #
 ## split orientation
-#bindsym ${modifier}+b split h;exec notify-send 'tile horizontally'
-#bindsym ${modifier}+v split v;exec notify-send 'tile vertically'
-##bindsym ${modifier}+q split toggle
 #
 ## toggle fullscreen mode for the focused container
-#bindsym ${modifier}+f fullscreen toggle
-#
-## change container layout (stacked, tabbed, toggle split)
-#bindsym ${modifier}+s layout stacking
-#bindsym ${modifier}+t layout tabbed
-#bindsym ${modifier}+e layout toggle split
 #
 ## toggle tiling / floating
 #bindsym ${modifier}+Shift+space floating toggle

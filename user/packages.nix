@@ -28,6 +28,12 @@
     discord
     spotify
     todoist-electron
+    vlc
+    zip
+    unzip
+    epubcheck
+    transmission-qt
+    libreoffice
   ];
 
   nixpkgs.config.allowUnfree = true;

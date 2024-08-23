@@ -158,7 +158,7 @@
   };
 
   # Unfortunately, there is (to my knowledge) not a way to configure xinitrc through nix, so we'll write it manually
-  home.file.".xinitrc".text = ''
+  home.file."Data/Configuration/RC/xinitrc".text = ''
     #!/usr/bin/env sh
 
     # Start i3

@@ -13,8 +13,11 @@
       "*.swp"
       "notes"
     ];
-    extraConfig.credential.helper = "${
+    extraConfig = {
+      init.defaultBranch = "main";
+      credential.helper = "${
         pkgs.git.override { withLibsecret = true; }
-    }/bin/git-credential-libsecret";
+      }/bin/git-credential-libsecret";
+    };
   };
 }

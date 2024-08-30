@@ -42,6 +42,9 @@
   # Enable gnome-keyring for passkey storage
   services.gnome.gnome-keyring.enable = true;
 
+  # Enable graphical frontend for gnome-keyring
+  programs.seahorse.enable = true;
+
   # Necessary for thunar to mount external drives correctly
   services.gvfs.enable = true;
 

@@ -162,7 +162,8 @@
     #!/usr/bin/env sh
 
     # Start i3
-    exec i3
+    #exec i3
+    cinnamon-session
   '';
   # environment.pathsToLink = [ "/libexec" ];
 }

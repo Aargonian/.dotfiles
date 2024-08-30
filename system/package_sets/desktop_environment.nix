@@ -9,8 +9,8 @@
       gdm.enable = false;
       lightdm = {
         enable = false;
+        greeters.gtk.enable = false;
         greeters.slick.enable = false;
-        greeters.gtk.enable = true;
       };
     };
 
@@ -22,9 +22,23 @@
     desktopManager = {
       cinnamon.enable = true;
       xfce.enable = false;
-      plasma6.enable = false;
     };
   };
+
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --remember-user-session --time --cmd hyprland";
+        user = "greeter";
+      };
+    };
+  };
+
+  # Ensure greetd can unlock my keyring
+  security.pam.services.greetd.enableGnomeKeyring = true;
+
+  programs.regreet.enable = true;
 
   services.displayManager = {
       sddm.enable = false;

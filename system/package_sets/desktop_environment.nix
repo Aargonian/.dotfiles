@@ -82,6 +82,7 @@
     solaar # Logitech unifying receivers
     via # QMK VIA Support
     arduino-ide # Arduino IDE 2.x
+    xwayland # Needed to run x11 apps on wayland
   ];
 
   services.udev.packages = [ pkgs.via ];

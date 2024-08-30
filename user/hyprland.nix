@@ -25,6 +25,7 @@
     # Screensharing
     xwaylandvideobridge
     xdg-desktop-portal-hyprland
+    xdg-desktop-portal-gtk
   ];
 
   programs.anyrun = {
@@ -53,6 +54,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    xwayland.enable = true;
     settings = {
       "$mod" = "Mod4";
 

@@ -69,12 +69,6 @@
 
   services.udev.packages = [ pkgs.via ];
 
-  # Enable Hyprland
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-  };
-
   qt = {
     enable = true;
     platformTheme = "gnome";

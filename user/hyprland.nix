@@ -5,7 +5,6 @@
     ./waybar
   ];
 
-
   home.packages = with pkgs; [
     # Screenshot Utilities
     grim
@@ -26,7 +25,6 @@
     # Screensharing
     xwaylandvideobridge
     xdg-desktop-portal-hyprland
-    xdg-desktop-portal-gtk
   ];
 
   programs.anyrun = {
@@ -55,13 +53,6 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    #plugins = [
-    #  inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars
-    #];
-    plugins =  with inputs.hyprland-plugins.packages.${pkgs.system}; [
-      hyprbars
-      inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
-    ];
     settings = {
       "$mod" = "Mod4";
 
@@ -76,6 +67,10 @@
         "DP-14,preferred,auto-left,1"
         ",preferred,auto,1"
       ];
+
+      debug = {
+        disable_logs = false;
+      };
 
       input = {
         kb_layout = "us";

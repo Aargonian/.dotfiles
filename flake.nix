@@ -9,22 +9,10 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    };
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
+
     anyrun = {
       url = "github:anyrun-org/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Provides split workspace behavior across monitors
-    split-monitor-workspaces = {
-      url = "github:Duckonaut/split-monitor-workspaces";
-      inputs.hyprland.follows = "hyprland";
     };
   };
 
@@ -33,9 +21,8 @@
     nixpkgs,
     nixpkgs-unstable,
     home-manager,
-    hyprland,
+#    hyprland,
     anyrun,
-    split-monitor-workspaces,
     ...
     } @ inputs:
     let
@@ -113,7 +100,7 @@
       ${username} = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgs-desktop;
         modules = [
-          hyprland.homeManagerModules.default
+#          hyprland.homeManagerModules.default
           ./home.nix
         ];
         extraSpecialArgs = {

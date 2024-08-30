@@ -28,5 +28,8 @@
     dualsensectl
     udisks
     parted
+
+    # To easily search Nixpkgs :)
+    nix-search-cli
   ];
 }

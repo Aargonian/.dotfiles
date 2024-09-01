@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, pkgs-unstable, ... }:
 {
   imports = [
     inputs.anyrun.homeManagerModules.default
@@ -26,6 +26,10 @@
     xwaylandvideobridge
     xdg-desktop-portal-hyprland
     xdg-desktop-portal-gtk
+
+    # We need unstable nwg-displays due to https://github.com/nwg-piotr/nwg-displays/issues/64
+    pkgs-unstable.nwg-displays
+
   ];
 
   programs.anyrun = {
@@ -57,18 +61,6 @@
     xwayland.enable = true;
     settings = {
       "$mod" = "Mod4";
-
-      monitor = [
-        "eDP-2,2560x1600@165,auto,1" # Main Laptop Screen
-        "DVI-I-2,preferred,auto-left,1"
-        "DVI-I-1,preferred,auto-right,1"
-        "DP-10,preferred,auto-right,1"
-        "DP-11,preferred,auto-right,1"
-        "DP-12,preferred,auto-left,1"
-        "DP-13,preferred,auto-left,1"
-        "DP-14,preferred,auto-left,1"
-        ",preferred,auto,1"
-      ];
 
       debug = {
         disable_logs = false;
@@ -229,6 +221,12 @@
         "$mod, mouse_down, workspace, e+1"
         "$mod, mouse_up, workspace, e-1"
       ];
+
     };
+
+    extraConfig = ''
+      source = ~/.config/hypr/monitors.conf
+      source = ~/.config/hypr/workspaces.conf
+    '';
   };
 }

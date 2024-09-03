@@ -24,127 +24,166 @@
     nixpkgs-unstable,
     nixos-hardware,
     home-manager,
-#    hyprland,
     anyrun,
     ...
     } @ inputs:
     let
+      aarch64-system = "aarch64-linux";
+      x86_64-system = "x86_64-linux";
+      default-username = "aargonian";
+
+      vm-username = default-username;
+      rpi-username = default-username;
+      desktop-username = default-username;
+      framework-username = default-username;
+
+      vm-hostname = "NytegearVM";
+      rpi-hostname = "NytegearRPI";
+      desktop-hostname = "NytegearDesktop";
+      framework-hostname = "NytegearLaptop";
+
+      vm-id = "${vm-username}@${vm-hostname}";
+      rpi-id = "${rpi-username}@${rpi-hostname}";
+      desktop-id = "${desktop-username}@${desktop-hostname}";
+      framework-id = "${framework-username}@${framework-hostname}";
+
       lib = nixpkgs.lib;
-      virtual_system = "aarch64-linux";
-      rpi-system = "aarch64-linux";
-      desktop_system = "x86_64-linux";
-      laptop_system = "x86_64-linux";
 
-      pkgs-desktop = import nixpkgs {
-        system = desktop_system;
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = (_: true);
-        };
-      };
-      pkgs-desktop-unstable = import nixpkgs-unstable {
-        system = desktop_system;
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = (_: true);
-        };
-      };
-      pkgs-virtual-unstable = import nixpkgs-unstable {
-        system = virtual_system;
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = (_: true);
-        };
+      unfreeConfig = {
+        allowUnfree = true;
+	allowUnfreePredicate = (_: true);
       };
 
-      pkgs-rpi = import nixpkgs {
-        system = rpi-system;
-        config = {
-          allowUnfree = true;
-	  allowUnfreePredicate = (_: true);
-        };
+      x86_64-pkgs = import nixpkgs {
+        system = x86_64-system;
+        config = unfreeConfig;
       };
 
-      pkgs-rpi-unstable = import nixpkgs-unstable {
-        system = rpi-system;
-        config = {
-          allowUnfree = true;
-    	  allowUnfreePredicate = (_: true);
-        };
+      x86_64-pkgs-unstable = import nixpkgs-unstable {
+      	system = x86_64-system;
+	config = unfreeConfig;
       };
 
-      username = "aargonian";
-      hostname = "NixosPersonal";
+      aarch64-pkgs = import nixpkgs {
+        system = aarch64-system;
+	config = unfreeConfig;
+      };
+
+      aarch64-pkgs-unstable = import nixpkgs-unstable {
+        system = aarch64-system;
+	config = unfreeConfig;
+      };
     in {
 
     nixosConfigurations = {
-      virtual = lib.nixosSystem {
-        system = virtual_system;
+
+      vm = lib.nixosSystem {
+        system = aarch64-system;
         modules = [
-          ./virtual_config.nix
+          ./virtual-config.nix
         ];
         specialArgs = {
-          inherit username;
-          inherit hostname;
+          username = vm-username;
+          hostname = vm-hostname;
           inherit inputs;
-          pkgs-unstable = pkgs-virtual-unstable;
-        };
-      };
-      desktop = lib.nixosSystem {
-        system = desktop_system;
-        modules = [
-          ./desktop_config.nix
-        ];
-        specialArgs = {
-          inherit username;
-          inherit hostname;
-          inherit inputs;
-          pkgs-unstable = pkgs-desktop-unstable;
-        };
-      };
-      laptop = lib.nixosSystem {
-        system = laptop_system;
-        modules = [
-          ./laptop_config.nix
-        ];
-        specialArgs = {
-          inherit username;
-          inherit hostname;
-          inherit inputs;
-          pkgs-unstable = pkgs-desktop-unstable;
+          pkgs-unstable = aarch64-pkgs-unstable;
         };
       };
 
       rpi = lib.nixosSystem {
-        system = rpi-system;
+        system = aarch64-system;
 	modules = [
 	  ./rpi-config.nix
 	  nixos-hardware.nixosModules.raspberry-pi-4
 	];
 	specialArgs = {
-	  inherit username;
-	  inherit hostname;
+	  username = rpi-username;
+	  hostname = rpi-hostname;
 	  inherit inputs;
-	  pkgs-unstable = pkgs-rpi-unstable;
+	  pkgs-unstable = aarch64-pkgs-unstable;
 	};
       };
+
+      desktop = lib.nixosSystem {
+        system = x86_64-system;
+        modules = [
+          ./desktop-config.nix
+        ];
+        specialArgs = {
+          username = desktop-username;
+          hostname = desktop-hostname;
+          inherit inputs;
+          pkgs-unstable = x86_64-pkgs-unstable;
+        };
+      };
+
+      framework = lib.nixosSystem {
+        system = x86_64-system;
+        modules = [
+          ./laptop-config.nix
+        ];
+        specialArgs = {
+          username = framework-username;
+          hostname = framework-hostname;
+          inherit inputs;
+          pkgs-unstable = x86_64-pkgs-unstable;
+        };
+      };
+
     };
 
     homeConfigurations = {
-      ${username} = home-manager.lib.homeManagerConfiguration {
-        pkgs = pkgs-desktop;
+      ${vm-id} = home-manager.lib.homeManagerConfiguration {
+        pkgs = aarch64-pkgs;
         modules = [
-#          hyprland.homeManagerModules.default
           ./home.nix
         ];
         extraSpecialArgs = {
-          inherit username;
+          username = vm-username;
           inherit inputs;
           inherit anyrun;
-          pkgs-unstable = pkgs-desktop-unstable;
+          pkgs-unstable = aarch64-pkgs-unstable;
+        };
+      };
+
+      "${rpi-id}" = home-manager.lib.homeManagerConfiguration {
+        pkgs = aarch64-pkgs;
+        modules = [
+          ./home.nix
+        ];
+        extraSpecialArgs = {
+          username = rpi-username;
+          inherit inputs;
+          inherit anyrun;
+          pkgs-unstable = aarch64-pkgs-unstable;
+        };
+      };
+
+      "${desktop-id}" = home-manager.lib.homeManagerConfiguration {
+        pkgs = x86_64-pkgs;
+        modules = [
+          ./home.nix
+        ];
+        extraSpecialArgs = {
+          username = desktop-username;
+          inherit inputs;
+          inherit anyrun;
+          pkgs-unstable = x86_64-pkgs-unstable;
+        };
+      };
+
+      "${framework-id}" = home-manager.lib.homeManagerConfiguration {
+        pkgs = x86_64-pkgs;
+        modules = [
+          ./home.nix
+        ];
+        extraSpecialArgs = {
+          username = framework-username;
+          inherit inputs;
+          inherit anyrun;
+          pkgs-unstable = x86_64-pkgs-unstable;
         };
       };
     };
-
   };
 }

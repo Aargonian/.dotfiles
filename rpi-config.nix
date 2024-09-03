@@ -7,12 +7,29 @@ let
   interface = "wlan0";
 in {
 
+  imports =
+    [ 
+      ./system/user_setup.nix
+      ./system/networking.nix
+      ./system/services.nix
+      ./system/user_setup.nix
+      ./system/networking.nix
+      ./system/services.nix
+      ./system/package_sets/essential.nix
+      ./system/package_sets/rust.nix
+    ];
+
   # Enable Flakes
   nix.settings.experimental-features = "nix-command flakes";
 
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
     initrd.availableKernelModules = [ "xhci_pci" "usbhid" "usb_storage" ];
+    supportedFilesystems = [ 
+      "ext4" 
+      "btrfs" 
+      "ntfs" 
+    ];
     loader = {
       grub.enable = false;
       generic-extlinux-compatible.enable = true;
@@ -29,11 +46,6 @@ in {
 
   networking = {
     hostName = hostname;
-    wireless = {
-      enable = true;
-      networks."${SSID}".psk = SSIDpassword;
-      interfaces = [ interface ];
-    };
   };
 
   environment.systemPackages = with pkgs; [ 

@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
@@ -20,6 +22,7 @@
     self,
     nixpkgs,
     nixpkgs-unstable,
+    nixos-hardware,
     home-manager,
 #    hyprland,
     anyrun,
@@ -28,6 +31,7 @@
     let
       lib = nixpkgs.lib;
       virtual_system = "aarch64-linux";
+      rpi-system = "aarch64-linux";
       desktop_system = "x86_64-linux";
       laptop_system = "x86_64-linux";
 
@@ -50,6 +54,22 @@
         config = {
           allowUnfree = true;
           allowUnfreePredicate = (_: true);
+        };
+      };
+
+      pkgs-rpi = import nixpkgs {
+        system = rpi-system;
+        config = {
+          allowUnfree = true;
+	  allowUnfreePredicate = (_: true);
+        };
+      };
+
+      pkgs-rpi-unstable = import nixpkgs-unstable {
+        system = rpi-system;
+        config = {
+          allowUnfree = true;
+    	  allowUnfreePredicate = (_: true);
         };
       };
 
@@ -93,6 +113,20 @@
           inherit inputs;
           pkgs-unstable = pkgs-desktop-unstable;
         };
+      };
+
+      rpi = lib.nixosSystem {
+        system = rpi-system;
+	modules = [
+	  ./rpi-config.nix
+	  nixos-hardware.nixosModules.raspberry-pi-4
+	];
+	specialArgs = {
+	  inherit username;
+	  inherit hostname;
+	  inherit inputs;
+	  pkgs-unstable = pkgs-rpi-unstable;
+	};
       };
     };
 

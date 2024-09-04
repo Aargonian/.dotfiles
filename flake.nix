@@ -51,7 +51,7 @@
 
       unfreeConfig = {
         allowUnfree = true;
-	allowUnfreePredicate = (_: true);
+    allowUnfreePredicate = (_: true);
       };
 
       x86_64-pkgs = import nixpkgs {
@@ -60,18 +60,18 @@
       };
 
       x86_64-pkgs-unstable = import nixpkgs-unstable {
-      	system = x86_64-system;
-	config = unfreeConfig;
+        system = x86_64-system;
+    config = unfreeConfig;
       };
 
       aarch64-pkgs = import nixpkgs {
         system = aarch64-system;
-	config = unfreeConfig;
+    config = unfreeConfig;
       };
 
       aarch64-pkgs-unstable = import nixpkgs-unstable {
         system = aarch64-system;
-	config = unfreeConfig;
+    config = unfreeConfig;
       };
     in {
 
@@ -92,16 +92,16 @@
 
       rpi = lib.nixosSystem {
         system = aarch64-system;
-	modules = [
-	  ./rpi-config.nix
-	  nixos-hardware.nixosModules.raspberry-pi-4
-	];
-	specialArgs = {
-	  username = rpi-username;
-	  hostname = rpi-hostname;
-	  inherit inputs;
-	  pkgs-unstable = aarch64-pkgs-unstable;
-	};
+    modules = [
+      ./rpi-config.nix
+      nixos-hardware.nixosModules.raspberry-pi-4
+    ];
+    specialArgs = {
+      username = rpi-username;
+      hostname = rpi-hostname;
+      inherit inputs;
+      pkgs-unstable = aarch64-pkgs-unstable;
+    };
       };
 
       desktop = lib.nixosSystem {
@@ -120,7 +120,8 @@
       framework = lib.nixosSystem {
         system = x86_64-system;
         modules = [
-          ./laptop-config.nix
+          ./hosts/laptop-config.nix
+          nixos-hardware.nixosModules.framework-16-7040-amd
         ];
         specialArgs = {
           username = framework-username;

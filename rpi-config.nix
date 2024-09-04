@@ -9,14 +9,14 @@ in {
 
   imports =
     [ 
-      ./system/user_setup.nix
+      ./system/user-setup.nix
       ./system/networking.nix
       ./system/services.nix
-      ./system/user_setup.nix
+      ./system/user-setup.nix
       ./system/networking.nix
       ./system/services.nix
-      ./system/package_sets/essential.nix
-      ./system/package_sets/rust.nix
+      ./system/package-sets/essential.nix
+      ./system/package-sets/rust.nix
     ];
 
   # Enable Flakes

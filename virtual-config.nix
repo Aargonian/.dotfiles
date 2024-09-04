@@ -3,11 +3,11 @@
   imports =
     [
       ./virtual-hardware-configuration.nix
-      ./system/user_setup.nix
+      ./system/user-setup.nix
       ./system/networking.nix
       ./system/services.nix
-      ./system/package_sets/essential.nix
-      ./system/package_sets/desktop_environment.nix
+      ./system/package-sets/essential.nix
+      ./system/package-sets/desktop-environment.nix
     ];
 
   # Use the systemd-boot EFI boot loader.

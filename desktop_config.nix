@@ -10,10 +10,10 @@
       ./system/user_setup.nix
       ./system/networking.nix
       ./system/services.nix
-      ./system/package_sets/essential.nix
-      ./system/package_sets/desktop_environment.nix
-      ./system/package_sets/steam.nix
-      ./system/package_sets/rust.nix
+      ./system/package-sets/essential.nix
+      ./system/package-sets/desktop-environment.nix
+      ./system/package-sets/steam.nix
+      ./system/package-sets/rust.nix
     ];
 
   # Use the systemd-boot EFI boot loader.

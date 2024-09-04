@@ -12,10 +12,10 @@
 
   imports =
     [ # Include the results of the hardware scan.
-      ./system/user_setup.nix
+      ./system/user-setup.nix
       ./system/display.nix
       ./system/networking.nix
-      ./system/system_packages.nix
+      ./system/system-packages.nix
       ./system/services.nix
     ];
 

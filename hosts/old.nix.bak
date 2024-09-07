@@ -1,0 +1,60 @@
+{ self, nixpkgs, ...} @ inputs:
+let
+  inherit (inputs.nixpkgs) lib;
+
+# generateSystemConfig = system:
+#   inputs // {
+#     pkts-unstable = import inputs.nixpkgs-unstable {
+#       inherit system;
+#       config.allowUnfree = true;
+#     };
+#     pkgs = import inputs.nixpkgs {
+#       inherit system;
+#       config.allowUnfree = true;
+#     };
+#   };
+
+# args = {inherit inputs lib generateSystemConfig; };
+  args = {inherit inputs lib; };
+  #nixosSystems = {
+  #  x86_64-linux = import ./x86_64-linux (args // {system = "x86_64-linux"; });
+  #};
+  #nixosSystemValues = builtins.attrValues nixosSystems;
+
+in
+{
+#  nixosConfigurations = builtins.listToAttrs(map (system: {
+#    name = system;
+#    value = import ./${system} inputs;
+#  }) (builtins.attrNames (builtins.readDir ./.)));
+#  nixosConfigurations = lib.attrsets.mergeAttrsList (map (it: it.nixosConfigurations or {}) nixosSystemValues);
+nixosConfigurations = (
+                        import ./x86_64-linux args
+                      ).nixosConfigurations // {};
+#  nixosConfigurations = builtins.listToAttrs (map (system: {
+#    name = system;
+#    value = (import ./${system} (args // { inherit system; })).nixosConfigurations // {};
+#  }) systems);
+}
+{ ... } @ inputs:
+let
+  lib = inputs.nixpkgs.lib;
+in
+{
+  nixosConfigurations = {
+    framework = lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./framework-config.nix
+        inputs.nixos-hardware.nixosModules.framework-16-7040-amd
+      ];
+      specialArgs = {
+        inherit inputs;
+
+        username = "aargonian";
+        hostname = "NytegearFramework";
+        pkgs-unstable = inputs.pkgs-unstable;
+      };
+    };
+  };
+}

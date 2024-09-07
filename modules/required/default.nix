@@ -1,0 +1,7 @@
+{ lib, ...}:
+{
+  # These packages cannot be disabled as I've determined they are necessary on all my systems.
+  imports = [
+    ./shell
+  ];
+}

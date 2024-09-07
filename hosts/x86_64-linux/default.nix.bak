@@ -1,0 +1,11 @@
+{ lib, inputs, ... } @ args:
+let
+in
+{
+#  nixosConfigurations = (import ./framework (args // { system = "x86_64-linux"; }) ) // {};
+  nixosConfigurations = import ./framework args;
+#  nixosConfigurations = builtins.listToAttrs (map (src: {
+#    name = src;
+#    value = import ./${src} inputs;
+#  }) (builtins.filter (file: builtins.match ".*\\.nix$" file != null) (builtins.attrNames (builtins.readDir ./.))));
+}

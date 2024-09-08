@@ -16,6 +16,13 @@
       }
     ];
 
+    services.logind = {
+      powerKey = "hibernate";
+      powerKeyLongPress = "poweroff";
+      lidSwitch = "hibernate";
+      lidSwitchExternalPower = "ignore";
+    };
+
     users.users.${config.custom.username} = {
       isNormalUser = true;
       shell = config.custom.shell.package;

@@ -12,5 +12,6 @@
     ./thunderbird.nix
     ./touchpad.nix
     ./xorg.nix
+    ./via.nix
   ];
 }

@@ -22,29 +22,18 @@
 
     greetd.enable = true;
     audio.pipewire.enable = true;
+
+    # Enable Framework Fingerprint Reader
+    # Note: Remember to run fprind-enroll on first setup
+    services = {
+      fingerprint.enable = false;
+    };
   };
 
   # QMK Support for the Framework 16 Keyboard
   hardware.keyboard.qmk.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    ungoogled-chromium # To use Framework's VIA interface
-    power-profiles-daemon
-    fprintd # To use Framework's fingerprint reader
-  ];
-
   services.power-profiles-daemon.enable = true;
-
-  services.logind = {
-    powerKey = "hibernate";
-    powerKeyLongPress = "poweroff";
-    lidSwitch = "hibernate";
-    lidSwitchExternalPower = "ignore";
-  };
-
-  # Setup Fprintd for framework laptop
-  # Note: Remember to run fprind-enroll on first setup
-  services.fprintd.enable = true;
 
   # Mount the big data partition
   fileSystems."/run/media/aargonian/SteamSamsung" = {

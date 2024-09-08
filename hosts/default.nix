@@ -1,9 +1,13 @@
 { self, nixpkgs, ...} @ inputs:
 let
   inherit (inputs.nixpkgs) lib;
-  #system = "x86_64-linux";
-  sys-args = {inherit inputs lib; } // { system = "x86_64-linux"; };
 
+  additional_inputs = {
+    config-path = "${self}/modules";
+    system = "x86_64-linux";
+  };
+
+  sys-args = {inherit inputs lib; } // additional_inputs;
   systems = import ./framework sys-args;
 in
 {

@@ -1,10 +1,12 @@
-{ lib, inputs, system, ... }:
+{ lib, inputs, system, config-path, ... }:
 {
   framework = lib.nixosSystem {
     inherit system;
     modules = [
-      ./framework-config.nix
+      config-path
       inputs.nixos-hardware.nixosModules.framework-16-7040-amd
+
+      ./config.nix
     ];
     specialArgs = {
       inherit inputs;

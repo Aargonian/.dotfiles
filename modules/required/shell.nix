@@ -1,27 +1,20 @@
 { lib, pkgs, config, ... }:
 {
   options.custom.shell = {
-    editor = lib.mkPackageOption {
-      default = pkgs.vim;
-      example = pkgs.neovim;
-      description = "Choose a default shell editor";
-    };
-
-    package = lib.mkPackageOption {
+    package = lib.mkOption {
+      type = lib.types.package;
       default = pkgs.zsh;
       example = pkgs.bash;
       description = "Choose a preferred shell program";
     };
-  }
+  };
 
   config = {
     environment.systemPackages = with pkgs; [
-      config.custom.shell.editor
       config.custom.shell.package
 
-      vi # Always install vi as a backup editor
-
       # Common system and shell utilities
+      vim
       wget
       curl
       file
@@ -35,5 +28,7 @@
       # To easily search Nixpkgs :)
       nix-search-cli
     ];
+
+    programs.zsh.enable = true;
   };
 }

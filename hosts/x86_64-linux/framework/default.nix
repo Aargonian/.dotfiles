@@ -1,17 +1,19 @@
-{ lib, inputs, ... }:
+{ lib, inputs, pkgs-stable, pkgs-unstable, system-name, config-path, ... } @ host-inputs:
 {
   framework = lib.nixosSystem {
-    system = "x86_64-linux";
+    system = system-name;
     modules = [
-      ./framework-config.nix
+      config-path
       inputs.nixos-hardware.nixosModules.framework-16-7040-amd
+
+      ./config.nix
     ];
     specialArgs = {
       inherit inputs;
+      inherit pkgs-unstable;
 
       username = "aargonian";
       hostname = "NytegearFramework";
-      pkgs-unstable = inputs.pkgs-unstable;
     };
   };
 }

@@ -1,4 +1,4 @@
-{ lib, inputs, pkgs-stable, pkgs-unstable, system-name, config-path, ... } @ host-inputs:
+{ lib, inputs, pkgs-unstable, system-name, config-path, ... }:
 {
   framework = lib.nixosSystem {
     system = system-name;

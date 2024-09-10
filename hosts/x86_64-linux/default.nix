@@ -1,4 +1,4 @@
-{ lib, inputs, config-path, ... } @ system-args:
+{ lib, inputs, config-path, ... }:
 let
   system-name = "x86_64-linux";
   host-args = {
@@ -27,11 +27,10 @@ let
   };
 
   systems = [
-    (import ./framework { inherit host-args; })
-#   (import ./desktop { inherit host-args; })
+    (import ./framework host-args)
+    (import ./desktop host-args)
   ];
 in
 {
-#  nixosConfigurations = lib.attrsets.mergeAttrsList systems;
-  nixosConfigurations = import ./framework host-args;
+  nixosConfigurations = lib.attrsets.mergeAttrsList systems;
 }

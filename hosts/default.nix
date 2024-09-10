@@ -11,6 +11,7 @@ let
 
   systems = {
     x86_64-linux = import ./x86_64-linux system-args;
+    aarch64-linux = import ./aarch64-linux system-args;
   };
   nixosSystems = builtins.attrValues systems;
 in

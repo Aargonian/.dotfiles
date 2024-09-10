@@ -40,6 +40,12 @@
 
         services.power-profiles-daemon.enable = true;
 
+        # Install virtualbox
+        virtualisation.virtualbox.host.enable = true;
+        users.extraGroups.vboxusers.members = [
+          "aargonian"
+        ];
+
         fileSystems."/" = {
           device = "/dev/disk/by-uuid/9e412de9-bef7-4747-9116-c01582fb22c1";
           fsType = "btrfs";

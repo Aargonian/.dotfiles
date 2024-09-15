@@ -30,6 +30,11 @@
       };
     };
 
+    programs.hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
+
     services.displayManager = {
         sddm.enable = false;
         defaultSession = "plasma";

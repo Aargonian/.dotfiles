@@ -1,6 +1,9 @@
 { ... }:
 {
   imports = [
+    ./hyprland
+#   ./i3
+
     ./browser.nix
     ./displaylink.nix
     ./fcitx.nix

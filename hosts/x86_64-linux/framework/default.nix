@@ -1,4 +1,4 @@
-{ lib, inputs, pkgs-unstable, system-name, config-path, ... }:
+{ lib, inputs, pkgs-unstable, system-name, config-path, users-path, ... }:
 {
   framework = lib.nixosSystem {
     system = system-name;
@@ -11,10 +11,22 @@
     };
     modules = [
       config-path
+      users-path
+      inputs.home-manager.nixosModules.home-manager
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+
+        imports = [
+          users-path
+        ];
+      }
       inputs.nixos-hardware.nixosModules.framework-16-7040-amd
-      ({ pkgs, ... }:
+      ({ pkgs, options, ... }:
       {
         hardware.enableRedistributableFirmware = lib.mkDefault true;
+
+        users.aargonian.enable = true;
 
         custom = {
           username = "aargonian";

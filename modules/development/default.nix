@@ -5,5 +5,6 @@
     ./neovim.nix
     ./python.nix
     ./rust.nix
+    ./git.nix
   ];
 }

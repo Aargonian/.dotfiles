@@ -12,7 +12,7 @@
     modules = [
       config-path
       inputs.nixos-hardware.nixosModules.framework-16-7040-amd
-
+      ({ pkgs, ... }:
       {
         hardware.enableRedistributableFirmware = lib.mkDefault true;
 
@@ -44,6 +44,10 @@
         virtualisation.virtualbox.host.enable = true;
         users.extraGroups.vboxusers.members = [
           "aargonian"
+        ];
+
+        environment.systemPackages = with pkgs; [
+          tigervnc
         ];
 
         fileSystems."/" = {
@@ -79,7 +83,7 @@
 
         #nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
         hardware.cpu.amd.updateMicrocode = lib.mkDefault true;
-      }
+      })
     ];
   };
 }

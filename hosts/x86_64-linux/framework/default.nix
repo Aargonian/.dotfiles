@@ -79,8 +79,8 @@
         # Mount the big data partition
         fileSystems."/run/media/aargonian/InternalData" = {
           device = "/dev/disk/by-uuid/7b75839e-56c3-4e31-8d4e-a69a61cdc653";
-          fsType = "ntfs-3g";
-          options = [ "rw" "user" "nofail"];
+          fsType = "btrfs";
+          options = [ "rw" ];
         };
 
         swapDevices = [ ];

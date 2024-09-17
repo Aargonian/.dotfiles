@@ -21,7 +21,8 @@
           users-path
         ];
       }
-      inputs.nixos-hardware.nixosModules.framework-16-7040-amd
+      # Disabled for now as currently framework-laptop-kmod breaks with kernel 6.11
+      #inputs.nixos-hardware.nixosModules.framework-16-7040-amd
       ({ pkgs, options, ... }:
       {
         hardware.enableRedistributableFirmware = lib.mkDefault true;
@@ -60,6 +61,8 @@
 
         environment.systemPackages = with pkgs; [
           tigervnc
+          liferea
+          gsmartcontrol
         ];
 
         fileSystems."/" = {

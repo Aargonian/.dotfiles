@@ -21,8 +21,7 @@
           users-path
         ];
       }
-      # Disabled for now as currently framework-laptop-kmod breaks with kernel 6.11
-      #inputs.nixos-hardware.nixosModules.framework-16-7040-amd
+      inputs.nixos-hardware.nixosModules.framework-16-7040-amd
       ({ pkgs, options, ... }:
       {
         hardware.enableRedistributableFirmware = lib.mkDefault true;

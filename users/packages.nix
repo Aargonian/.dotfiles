@@ -56,6 +56,8 @@
       hexchat
       pkgs-unstable.liferea
       gsmartcontrol
+      jq
+      pv
     ];
 
     nixpkgs.config.allowUnfree = true;

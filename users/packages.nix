@@ -1,10 +1,13 @@
 { lib, config, pkgs, pkgs-unstable, ... }:
 {
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "Noto" ]; })
+  ];
+
   home-manager.users.${config.custom.username} = {
     home.packages = with pkgs; [
       firefox
       thunderbird
-      nerdfonts
       ncspot
       calibre
       terminator
@@ -39,14 +42,7 @@
       bitwarden-desktop
 
       # PDF Reader
-      pkgs-unstable.xreader
-
-      # Jetbrains IDEs
-      jetbrains.rust-rover
-      jetbrains.webstorm
-      jetbrains.writerside
-      jetbrains.pycharm-community-bin
-      jetbrains.clion
+      cinnamon.xreader
 
       # To use qute-bitwarden
       keyutils

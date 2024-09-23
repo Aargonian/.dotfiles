@@ -5,7 +5,7 @@
       # Enable zsh
       programs.zsh = {
         enable = true;
-        dotDir = lib.mkIf config.custom.useHomeDataDir "${config.custom.dataDirPath}/Data/ApplicationData/ZSH";
+        dotDir = lib.mkIf config.custom.useHomeDataDir "/${config.custom.appDataRelative}/ZSH";
         history = {
           extended = true;
         };

@@ -37,6 +37,41 @@
       type = lib.types.path;
       description = "Path where data is stored in the home directory";
     };
+
+    dataDirRelative = lib.mkOption {
+      type = lib.types.path;
+      description = "Path where data is stored in the home directory";
+    };
+
+    localDataRelative = lib.mkOption {
+      type = lib.types.path;
+      description = "Path where data is stored in the home directory";
+    };
+
+    appDataRelative = lib.mkOption {
+      type = lib.types.path;
+      description = "Path where data is stored in the home directory";
+    };
+
+    trashRelative = lib.mkOption {
+      type = lib.types.path;
+      description = "Path where data is stored in the home directory";
+    };
+
+    scriptsRelative = lib.mkOption {
+      type = lib.types.path;
+      description = "Path where data is stored in the home directory";
+    };
+
+    configsRelative = lib.mkOption {
+      type = lib.types.path;
+      description = "Path where data is stored in the home directory";
+    };
+
+    cacheRelative = lib.mkOption {
+      type = lib.types.path;
+      description = "Path where data is stored in the home directory";
+    };
   };
 
 

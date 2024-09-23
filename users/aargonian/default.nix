@@ -2,13 +2,22 @@
 let
   username = "aargonian";
   home = "/home/${username}";
-  dataDir = "${home}/Data";
-  localData = "${dataDir}/LocalData";
-  bappData   = "${localData}/LocalData/AppData";
-  trash     = "${localData}/Trash";
-  scripts   = "${localData}/Scripts";
-  configs   = "${bappData}/Config";
-  cache     = "${bappData}/Cache";
+
+  dataDirRelative   = "/Data";
+  localDataRelative = "${dataDirRelative}/LocalData";
+  appDataRelative   = "${localDataRelative}/AppData";
+  trashRelative     = "${localDataRelative}/Trash";
+  scriptsRelative   = "${localDataRelative}/Scripts";
+  configsRelative   = "${appDataRelative}/Config";
+  cacheRelative     = "${appDataRelative}/Cache";
+
+  dataDir   = "${home}${dataDirRelative}";
+  localData = "${home}${localDataRelative}";
+  appData   = "${home}${appDataRelative}";
+  trash     = "${home}${trashRelative}";
+  scripts   = "${home}${scriptsRelative}";
+  configs   = "${home}${configsRelative}";
+  cache     = "${home}${cacheRelative}";
 in
 {
   options.users.aargonian = {
@@ -32,13 +41,22 @@ in
 
       # Use Data Directory Layout
       useHomeDataDir = true;
+
       dataDirPath = dataDir;
       localData = localData;
-      appData   = bappData;
+      appData   = appData;
       trash     = trash;
       scripts   = scripts;
       configs   = configs;
       cache     = cache;
+
+      dataDirRelative   = dataDirRelative;
+      localDataRelative = localDataRelative;
+      appDataRelative   = appDataRelative;
+      trashRelative     = trashRelative;
+      scriptsRelative   = scriptsRelative;
+      configsRelative   = configsRelative;
+      cacheRelative     = cacheRelative;
     };
 
     home-manager.users.${username} = lib.mkIf config.users.aargonian.enable {

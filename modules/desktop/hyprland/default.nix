@@ -135,7 +135,7 @@
           ];
           windowrulev2 = [
             "suppressevent maximize, class:.*" # You'll probably like this.
-            "opacity 0.95 0.50, title:(.*)$"
+            #"opacity 0.95 0.50, title:(.*)$"
           ];
 
       # Making things not break in Wayland

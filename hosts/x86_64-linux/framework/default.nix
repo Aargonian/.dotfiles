@@ -33,6 +33,7 @@
           hostname = "NytegearFramework";
 
           desktop.enable = true;
+          mullvad.enable = true;
           #displaylink.enable = true;
           development = {
             common.enable = true;

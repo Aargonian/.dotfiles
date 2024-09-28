@@ -1,4 +1,4 @@
-{ lib, inputs, pkgs-unstable, system-name, config-path, ... }:
+{ lib, inputs, pkgs-unstable, system-name, config-path, users-path, ... }:
 {
   desktop = lib.nixosSystem {
     system = system-name;
@@ -7,16 +7,36 @@
       inherit pkgs-unstable;
 
       username = "aargonian";
-      hostname = "NytegearDesktop";
+      hostname = "NytegearFramework";
     };
     modules = [
       config-path
-      inputs.nixos-hardware.nixosModules.framework-16-7040-amd
+      users-path
+      inputs.home-manager.nixosModules.home-manager
       {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+
+        imports = [
+          users-path
+        ];
+      }
+      ({ pkgs, config, options, modulesPath, ... }:
+      {
+        imports = [ 
+          (modulesPath + "/installer/scan/not-detected.nix")
+        ];
+        hardware.enableRedistributableFirmware = lib.mkDefault true;
+
+        users.aargonian.enable = true;
+
         custom = {
           username = "aargonian";
-          hostname = "NytegearDesktop";
+          hostname = "NytegearFramework";
+
           desktop.enable = true;
+          mullvad.enable = true;
+          #displaylink.enable = true;
           development = {
             common.enable = true;
             rust.enable = true;
@@ -33,30 +53,49 @@
           };
         };
 
-        # Enable Firmware Updates for Framework 16
-        services.fwupd.enable = true;
+        services.power-profiles-daemon.enable = true;
+
+        # Install virtualbox
+        virtualisation.virtualbox.host.enable = true;
+        users.extraGroups.vboxusers.members = [
+          "aargonian"
+        ];
+
+        environment.systemPackages = with pkgs; [
+          tigervnc
+          liferea
+          gsmartcontrol
+        ];
 
         fileSystems."/" =
-          { device = "/dev/disk/by-uuid/1cf03095-bc5f-4f4e-b466-ad5631a6d3af";
-            fsType = "btrfs";
-          };
+        { 
+          device = "/dev/disk/by-uuid/169a918f-011b-4f32-9c64-e62605b596aa";
+          fsType = "btrfs";
+        };
 
         fileSystems."/boot" =
-          { device = "/dev/disk/by-uuid/2F2E-6AF3";
-            fsType = "vfat";
-          };
+        { 
+          device = "/dev/disk/by-uuid/EDE0-E7FD";
+          fsType = "vfat";
+          options = [ "fmask=0022" "dmask=0022" ];
+        };
 
         swapDevices = [ ];
 
-        boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+        boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
         boot.initrd.kernelModules = [ ];
         boot.kernelModules = [ "kvm-amd" ];
         boot.extraModulePackages = [ ];
 
-        nixpkgs.hostPlatform = system-name;
-        hardware.enableRedistributableFirmware = lib.mkDefault true;
-        hardware.cpu.amd.updateMicrocode = lib.mkdDefault true;
-      }
+        # Mediatek Driver fix for Framework
+        hardware.wirelessRegulatoryDatabase = true;
+        boot.extraModprobeConfig = ''
+          options cfg80211 ieee80211_regdom="US"
+        '';
+
+        nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+        hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+      })
     ];
   };
 }

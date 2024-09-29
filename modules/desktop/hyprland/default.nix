@@ -152,18 +152,25 @@
           bind = [
             "$mod, p, exec, anyrun"
             "$mod, Return, exec, xfce4-terminal"
-            ", Print, exec, grimblast copy area"
-            # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-            #"$mod, V, togglefloating,"
-            #"$mod, R, exec, $menu"
-            #"$mod, P, pseudo, # dwindle"
-            "$mod SHIFT, k, killactive"
-            "$mod SHIFT, t, pseudo," # dwindle
-            "$mod, V, togglesplit," # dwindle
+
+            # Various Window Functions
+            "$mod, SPACE, togglefloating,"
+            "$mod, f, fullscreen"
+            "$mod, c, killactive"
+
+            # Dwindle
+            "$mod SHIFT, t, pseudo,"
+            "$mod, V, togglesplit,"
 
             # Move with LMB, Resize with RMB
             "$mod, mouse:272, movewindow"
             "$mod, mouse:273, resizewindowpixel"
+
+            # Move window with Keyboard
+            "$mod SHIFT, h, movewindow, l"
+            "$mod SHIFT, j, movewindow, d"
+            "$mod SHIFT, k, movewindow, u"
+            "$mod SHIFT, l, movewindow, r"
 
             # Move focus with mod + arrow keys
             "$mod, h, movefocus, l"
@@ -198,10 +205,6 @@
             "$mod SHIFT, 8, movetoworkspace, 8"
             "$mod SHIFT, 9, movetoworkspace, 9"
             "$mod SHIFT, 0, movetoworkspace, 10"
-
-            # Scroll through existing workspaces with mod + scroll
-            "$mod, mouse_down, workspace, e+1"
-            "$mod, mouse_up, workspace, e-1"
           ];
 
         };

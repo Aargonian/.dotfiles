@@ -65,21 +65,37 @@
           gsmartcontrol
         ];
 
-        fileSystems."/" = {
-          device = "/dev/disk/by-uuid/9e412de9-bef7-4747-9116-c01582fb22c1";
-          fsType = "btrfs";
-        };
+        fileSystems = {
+          "/" = {
+            device = "/dev/disk/by-uuid/9e412de9-bef7-4747-9116-c01582fb22c1";
+            fsType = "btrfs";
+          };
 
-        fileSystems."/boot" = {
-          device = "/dev/disk/by-uuid/1FA3-F2D7";
-          fsType = "vfat";
-          options = [ "fmask=0022" "dmask=0022" ];
-        };
+          "/boot" = {
+            device = "/dev/disk/by-uuid/1FA3-F2D7";
+            fsType = "vfat";
+            options = [ "fmask=0022" "dmask=0022" ];
+          };
 
-        # Mount the big data partition
-        fileSystems."/run/media/aargonian/InternalData" = {
-          device = "/dev/disk/by-uuid/7b75839e-56c3-4e31-8d4e-a69a61cdc653";
-          fsType = "btrfs";
+          # Mount the big data partition
+          "/run/media/aargonian/InternalData" = {
+            device = "/dev/disk/by-uuid/7b75839e-56c3-4e31-8d4e-a69a61cdc653";
+            fsType = "btrfs";
+          };
+
+          # Mount Framework Portable SSD if Present (Usually in the left slot)
+          "/run/media/aargonian/FrameworkPortable" = {
+            device = "/dev/disk/by-uuid/203ECDA4274108EA";
+            fsType = "ntfs";
+            options = [ "nofail" "fmask=011" "dmask=000" ];
+          };
+
+          # Mount Temporary Framework SSD
+          "/run/media/aargonian/FrameworkAuxillary" = {
+            device = "/dev/disk/by-uuid/a0561ab4-8f9d-41f2-bdfc-e357660b8307";
+            fsType = "btrfs";
+            options = [ "nofail" ];
+          };
         };
 
         swapDevices = [ ];

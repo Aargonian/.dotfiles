@@ -7,7 +7,8 @@
   config = lib.mkIf config.custom.development.rust.enable {
     environment.systemPackages = with pkgs; [
       cargo
-      rustc
+      #      rustc
+      rustup
       ripgrep
     ];
 

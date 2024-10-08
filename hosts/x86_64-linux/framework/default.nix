@@ -22,7 +22,8 @@
         ];
       }
       inputs.nixos-hardware.nixosModules.framework-16-7040-amd
-      ({ pkgs, options, ... }:
+
+      ({ lib, config, pkgs, options, ... }:
       {
         hardware.enableRedistributableFirmware = lib.mkDefault true;
 
@@ -63,6 +64,9 @@
           tigervnc
           liferea
           gsmartcontrol
+
+          # AMD GPU Control
+          lact
         ];
 
         fileSystems = {
@@ -113,6 +117,25 @@
 
         #nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
         hardware.cpu.amd.updateMicrocode = lib.mkDefault true;
+
+        # Graphic Stuff
+        hardware.opengl = {
+          extraPackages = with pkgs; [ amdvlk ];
+          extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
+          enable = true;
+          driSupport = true;
+          driSupport32Bit = true;
+        };
+
+        # Control AMD GPU with Lact
+        systemd.packages = with pkgs; [ lact ];
+        systemd.services.lactd.wantedBy = [ "multi-user.target" ];
+
+        # Add Raspberry Pi Server to Hosts
+        networking.extraHosts = ''
+          192.168.50.7 rpi
+          192.168.50.1 router
+        '';
       })
     ];
   };

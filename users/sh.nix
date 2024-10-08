@@ -19,10 +19,6 @@
           APPDATA   = config.custom.appData;
           TRASH     = config.custom.trash;
           PATH      = "$PATH:${config.custom.scripts}";
-
-          # Move XINITRC and XAUTHORITY into my data directory
-          XINITRC     = "${config.custom.configs}/RC/xinitrc";
-          XAUTHORITY  = "${config.custom.cache}/X11/Xauthority";
         };
         initExtra = ''
           archive() {

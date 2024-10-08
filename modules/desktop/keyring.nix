@@ -12,6 +12,6 @@
     services.gnome.gnome-keyring.enable = true;
 
     # Enable graphical frontend for gnome-keyring
-    programs.seahorse.enable = true;
+    programs.seahorse.enable = false;
   };
 }

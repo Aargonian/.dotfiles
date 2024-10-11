@@ -65,6 +65,7 @@ in
               # Individual
               firefox.enable = true;
               steam.enable = true;
+              xfce4-terminal.enable = true;
             };
           };
 

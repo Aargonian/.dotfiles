@@ -10,6 +10,7 @@
     ./productivity
     ./security
     ./shell
+    ./terminals
     ./utility
   ];
 }

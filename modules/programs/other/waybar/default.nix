@@ -75,7 +75,7 @@
                 format-charging-full = " {capacity}%";
                 format-full = "{icon} {capacity}%";
                 format-alt = "{icon} Health: {health}% {power:.2f}W";
-                # TODO: Fix the spacing on the icons
+
                 format-icons = [
                     "  "
                     "  "

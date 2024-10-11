@@ -34,7 +34,6 @@
 
       ];
 
-      # TODO: This enable seems redundant
       wayland.windowManager.hyprland = {
         enable = true;
         xwayland.enable = true;

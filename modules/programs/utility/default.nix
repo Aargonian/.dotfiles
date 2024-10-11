@@ -6,6 +6,7 @@
     ./fcitx.nix
     ./printing.nix
     ./thunar.nix
+    ./tigervnc.nix
     ./touchpad.nix
     ./via.nix
   ];
@@ -22,6 +23,7 @@
       fcitx.enable = true;
       printing.enable = true;
       thunar.enable = true;
+      tigervnc.enable = true;
       touchpad.enable = true;
       via.enable = true;
     };

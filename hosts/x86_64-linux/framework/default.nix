@@ -4,7 +4,6 @@ let
   hostname = "NytegearFramework";
 
   configuration = { lib, config, pkgs, options, ... }: {
-    hardware.enableRedistributableFirmware = lib.mkDefault true;
     users.aargonian.enable = true;
 
     custom = {
@@ -19,12 +18,16 @@ let
           vpn.enable = true;
         };
         display.enable = true;
-
         display.desktopManagers.cinnamon.enable = true;
+
+        # Enable Virtualbox
+        virtualization.virtualbox.host = true;
       };
 
       services = {
         greetd.enable = true;
+        lact.enable = true;
+        power-profiles-daemon.enable = true;
       };
 
       programs = {
@@ -44,23 +47,6 @@ let
         xfce4-terminal.enable = true;
       };
     };
-
-    services.power-profiles-daemon.enable = true;
-
-    # Install virtualbox
-    virtualisation.virtualbox.host.enable = true;
-    users.extraGroups.vboxusers.members = [
-      username
-    ];
-
-    environment.systemPackages = with pkgs; [
-      tigervnc
-      liferea
-      gsmartcontrol
-
-      # AMD GPU Control
-      lact
-    ];
 
     fileSystems = {
       "/" = {
@@ -108,8 +94,9 @@ let
       options cfg80211 ieee80211_regdom="US"
     '';
 
-    #nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-    hardware.cpu.amd.updateMicrocode = lib.mkDefault true;
+    nixpkgs.hostPlatform = system-name;
+    hardware.cpu.amd.updateMicrocode = true;
+    hardware.enableRedistributableFirmware = true;
 
     # Graphic Stuff
     hardware.opengl = {
@@ -119,10 +106,6 @@ let
       driSupport = true;
       driSupport32Bit = true;
     };
-
-    # Control AMD GPU with Lact
-    systemd.packages = with pkgs; [ lact ];
-    systemd.services.lactd.wantedBy = [ "multi-user.target" ];
 
     # Add Raspberry Pi Server to Hosts
     networking.extraHosts = ''

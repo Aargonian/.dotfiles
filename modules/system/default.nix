@@ -8,5 +8,6 @@
     ./networking
     ./required
     ./shell
+    ./virtualization
   ];
 }

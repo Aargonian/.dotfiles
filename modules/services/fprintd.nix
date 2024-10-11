@@ -1,12 +1,12 @@
-{ lib, config, ...}:
+{ lib, config, ... }: with lib;
 {
   options.custom.services.fingerprint = {
-    enable = lib.mkEnableOption "fingerprint authentication services";
+    enable = mkEnableOption "fingerprint authentication services";
   };
 
-  config = lib.mkIf config.custom.services.fingerprint.enable {
+  config = mkIf config.custom.services.fingerprint.enable {
     services.fprintd.enable = true;
-  } // lib.mkIf (!config.custom.services.fingerprint.enable) {
+  } // mkIf (!config.custom.services.fingerprint.enable) {
     services.fprintd.enable = false;
   };
 }

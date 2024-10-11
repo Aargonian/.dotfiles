@@ -1,10 +1,9 @@
 { ...}:
 {
   imports = [
-    ./required
-    ./desktop
+   ./programs
     ./servers
-    ./services
-    ./development
+   ./services
+   ./system
   ];
 }

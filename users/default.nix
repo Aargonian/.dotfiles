@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, ... }:
 {
   options.custom = {
     useHomeDataDir = lib.mkEnableOption "Use Data Directory in Home for All Configurations";
@@ -76,8 +76,7 @@
 
 
   imports = [
-    ./packages.nix
-    ./sh.nix
     ./aargonian
+    ./sh.nix
   ];
 }

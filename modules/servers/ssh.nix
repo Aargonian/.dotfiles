@@ -1,12 +1,12 @@
-{ lib, config, ... }:
+{ lib, config, ... }: with lib;
 {
   options.custom.servers = {
     ssh = {
-      enable = lib.mkEnableOption "SSHD Server Daemon";
+      enable = mkEnableOption "SSHD Server Daemon";
     };
   };
 
-  config = lib.mkIf config.custom.servers.ssh.enable {
+  config = mkIf config.custom.servers.ssh.enable {
     services = {
       openssh.enable = true;
     };

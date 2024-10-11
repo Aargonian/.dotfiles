@@ -1,25 +1,26 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }: with lib;
 {
   # Pipewire for Audio and Screensharing
-  options.custom.audio = {
-    pipewire = {
-      enable = lib.mkEnableOption "Pipewire";
-    };
+  options.custom.services.pipewire = {
+    enable = mkEnableOption "Pipewire";
   };
 
-  config = lib.mkIf config.custom.audio.pipewire.enable {
+  config = mkIf config.custom.services.pipewire.enable {
+    # Recommended for Pipewire and Pulseaudio
+    security.rtkit.enable = mkDefault true;
+
     services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
+      enable = mkDefault true;
+      alsa.enable = mkDefault true;
+      alsa.support32Bit = mkDefault true;
+      pulse.enable = mkDefault true;
 
       wireplumber = {
-        enable = true;
+        enable = mkDefault true;
       };
     };
 
-    # Recommended for Pipewire and Pulseaudio
-    security.rtkit.enable = true;
+    # Pulseaudio needs to be disabled for pipewire
+    hardware.pulseaudio.enable = false;
   };
 }

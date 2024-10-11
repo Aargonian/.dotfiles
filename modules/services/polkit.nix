@@ -1,10 +1,10 @@
-{ lib, config, ... }:
+{ lib, config, ... }: with lib;
 {
-  options.custom.polkit = {
-    enable = lib.mkEnableOption "Polkit";
+  options.custom.services.polkit = {
+    enable = mkEnableOption "Polkit";
   };
 
-  config = lib.mkIf config.custom.polkit.enable {
+  config = mkIf config.custom.services.polkit.enable {
   security.polkit = {
       enable = true;
       extraConfig = ''

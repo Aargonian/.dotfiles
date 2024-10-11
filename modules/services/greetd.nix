@@ -1,10 +1,10 @@
-{ lib, pkgs, config, ...}:
+{ lib, config, pkgs, ... }: with lib;
 {
-  options.custom.greetd = {
-    enable = lib.mkEnableOption "Greetd greeter";
+  options.custom.services.greetd = {
+    enable = mkEnableOption "Greetd greeter";
   };
 
-  config = lib.mkIf config.custom.greetd.enable {
+  config = mkIf config.custom.services.greetd.enable {
     services.greetd = {
       enable = true;
       settings = {

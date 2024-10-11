@@ -1,9 +1,6 @@
 { lib, config, pkgs, ...}:
 {
   config = lib.mkIf config.users.aargonian.enable {
-    # TODO: Investigate this not working
-    custom.programs.zsh.enable = true;
-
     home-manager.users.${config.custom.username} = {
       programs.zsh = {
         enable = true;

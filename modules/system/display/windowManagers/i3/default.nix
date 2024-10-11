@@ -27,12 +27,10 @@
     home-manager.users.${config.custom.username} = {
 
       home.packages = with pkgs; [
-        xfce.xfce4-terminal
-
         # Make things look nicer
         lxappearance
 
-        # Necessary Packages
+        # Necessary Packages to be Usable
         i3status
         dmenu
         feh

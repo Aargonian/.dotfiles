@@ -19,6 +19,7 @@ let
         };
         display.enable = true;
         display.desktopManagers.cinnamon.enable = true;
+        display.windowManagers.i3.enable = true;
 
         # Enable Virtualbox
         virtualization.virtualbox.host = true;
@@ -127,6 +128,7 @@ in
     modules = [
       config-path
       users-path
+      inputs.nixos-hardware.nixosModules.framework-16-7040-amd
       inputs.home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
@@ -136,7 +138,6 @@ in
           users-path
         ];
       }
-      inputs.nixos-hardware.nixosModules.framework-16-7040-amd
 
       configuration
     ];

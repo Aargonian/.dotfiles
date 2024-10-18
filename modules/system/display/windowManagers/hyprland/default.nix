@@ -11,6 +11,11 @@
       waybar.enable = true;
     };
 
+    programs.hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
+
     home-manager.users.${config.custom.username} = {
       home.packages = with pkgs; [
         # Wallpaper

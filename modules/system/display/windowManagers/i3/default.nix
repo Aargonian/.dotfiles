@@ -8,8 +8,13 @@
 
   config = mkIf config.custom.system.display.windowManagers.i3.enable {
     custom = {
-      # Xorg is required for i3
-      system.display.xorg.enable = true;
+      system.display = {
+        # Xorg is required for i3
+        xorg.enable = true;
+
+        # Enable startx
+        windowManagers.startx.enable = true;
+      };
 
       services = {
         # Default enable Picom for compositing
@@ -21,6 +26,8 @@
 
       # Default to thunar for file management
       programs.thunar.enable = mkDefault true;
+
+
     };
 
 
@@ -152,7 +159,8 @@
       };
 
       # Unfortunately, there is (to my knowledge) not a way to configure xinitrc through nix, so we'll write it manually
-      home.file."Data/Configuration/RC/xinitrc".text = mkDefault ''
+
+      home.file.".xinitrc".text = ''
         #!/usr/bin/env sh
 
         # Start i3

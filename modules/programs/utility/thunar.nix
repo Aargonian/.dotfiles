@@ -21,7 +21,18 @@
     services.tumbler.enable = mkDefault true;
 
     # GVFS for Mount, Trash, and other filesystem tools
-    services.gvfs.enable = mkDefault true;
+    services.gvfs = {
+      enable = mkDefault true;
+      package = lib.mkForce pkgs.gnome3.gvfs;
+    };
+
+    environment.systemPackages = with pkgs; [
+      samba
+      cifs-utils
+    ];
+
+    # Samba Fix
+    networking.firewall.extraCommands = ''iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns'';
 
     # Xfconf is needed to save thunar's preferences in case XFCE doesn't exist
     # TODO: Eventually pull this into its own module and use home manager for xfconf settings!

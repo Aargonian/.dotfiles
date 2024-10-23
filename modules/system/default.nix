@@ -4,6 +4,7 @@
     ./audio
     ./bluetooth
     ./display
+    ./filesystem
     ./fonts
     ./networking
     ./required

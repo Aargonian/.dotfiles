@@ -18,7 +18,8 @@
         #!/usr/bin/env sh
 
         # start cinnamon
-        cinnamon-session
+        export `dbus-launch`
+        exec cinnamon-session
       '';
     };
   };

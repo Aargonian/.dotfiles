@@ -6,7 +6,6 @@ let
   dataDirRelative   = "/Data";
   localDataRelative = "${dataDirRelative}/LocalData";
   appDataRelative   = "${localDataRelative}/AppData";
-  trashRelative     = "${localDataRelative}/Trash";
   scriptsRelative   = "${localDataRelative}/Scripts";
   configsRelative   = "${appDataRelative}/Config";
   cacheRelative     = "${appDataRelative}/Cache";
@@ -14,7 +13,6 @@ let
   dataDir   = "${home}${dataDirRelative}";
   localData = "${home}${localDataRelative}";
   appData   = "${home}${appDataRelative}";
-  trash     = "${home}${trashRelative}";
   scripts   = "${home}${scriptsRelative}";
   configs   = "${home}${configsRelative}";
   cache     = "${home}${cacheRelative}";
@@ -48,7 +46,6 @@ in
       dataDirPath = dataDir;
       localData = localData;
       appData   = appData;
-      trash     = trash;
       scripts   = scripts;
       configs   = configs;
       cache     = cache;
@@ -56,7 +53,6 @@ in
       dataDirRelative   = dataDirRelative;
       localDataRelative = localDataRelative;
       appDataRelative   = appDataRelative;
-      trashRelative     = trashRelative;
       scriptsRelative   = scriptsRelative;
       configsRelative   = configsRelative;
       cacheRelative     = cacheRelative;

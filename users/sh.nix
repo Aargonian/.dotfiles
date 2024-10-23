@@ -10,13 +10,11 @@
         };
         shellAliases = {
           vim = "nvim";
-          rm = "rem";
         };
         sessionVariables = lib.mkIf config.custom.useHomeDataDir {
           DATA      = config.custom.dataDirPath;
           LOCALDATA = config.custom.localData;
           APPDATA   = config.custom.appData;
-          TRASH     = config.custom.trash;
           PATH      = "$PATH:${config.custom.scripts}";
         };
         initExtra = ''

@@ -12,6 +12,7 @@ let
       system = {
         audio.enable = true;
         bluetooth.enable = true;
+        filesystem.gvfs.enable = true;
         networking = {
           enable = true;
           hostname = hostname;

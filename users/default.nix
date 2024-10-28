@@ -18,11 +18,6 @@
       description = "Path where data is stored in the home directory";
     };
 
-    trash = lib.mkOption {
-      type = lib.types.path;
-      description = "Path where data is stored in the home directory";
-    };
-
     scripts = lib.mkOption {
       type = lib.types.path;
       description = "Path where data is stored in the home directory";
@@ -49,11 +44,6 @@
     };
 
     appDataRelative = lib.mkOption {
-      type = lib.types.path;
-      description = "Path where data is stored in the home directory";
-    };
-
-    trashRelative = lib.mkOption {
       type = lib.types.path;
       description = "Path where data is stored in the home directory";
     };

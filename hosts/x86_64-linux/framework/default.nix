@@ -67,23 +67,24 @@ let
       };
 
       # Mount the big data partition
-      "/run/media/aargonian/InternalData" = {
+      "/media/Data" = {
         device = "/dev/disk/by-uuid/7b75839e-56c3-4e31-8d4e-a69a61cdc653";
         fsType = "btrfs";
+        options = [ "nofail" ];
       };
 
       # Mount Framework Portable SSD if Present (Usually in the left slot)
-      "/run/media/aargonian/FrameworkPortable" = {
+      "/media/Work" = {
         device = "/dev/disk/by-uuid/203ECDA4274108EA";
         fsType = "ntfs";
-        options = [ "nofail" "fmask=011" "dmask=000" ];
+        options = [ "nofail" "fmask=133" "dmask=022" ];
       };
 
       # Mount Temporary Framework SSD
-      "/run/media/aargonian/FrameworkAuxillary" = {
-        device = "/dev/disk/by-uuid/a0561ab4-8f9d-41f2-bdfc-e357660b8307";
-        fsType = "btrfs";
-        options = [ "nofail" ];
+      "/media/Inbox" = {
+        device = "/dev/disk/by-uuid/11CA8534042ADA73";
+        fsType = "ntfs";
+        options = [ "nofail" "fmask=133" "dmask=022" ];
       };
     };
 

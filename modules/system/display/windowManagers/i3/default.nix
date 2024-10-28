@@ -26,10 +26,30 @@
 
       # Default to thunar for file management
       programs.thunar.enable = mkDefault true;
-
-
     };
 
+    # Recommends by NixOS Wiki for some reason?
+    environment.pathsToLink = [ "/libexec" ];
+
+    services.xserver = {
+      desktopManager = {
+        xterm.enable = false;
+      };
+
+      displayManager = {
+        defaultSession = "none+i3";
+      };
+
+      windowManager.i3 = {
+        enable = true;
+        package = pkgs.i3-gaps;
+        extraPackages = with pkgs; [
+          dmenu
+          i3status
+          i3lock
+        ];
+      };
+    };
 
     home-manager.users.${config.custom.username} = {
 
@@ -48,7 +68,7 @@
 
       xsession.windowManager.i3 = {
         enable = true;
-        package = mkDefault pkgs.i3-gaps;
+        package = pkgs.i3-gaps;
         config = mkDefault {
           modifier = "Mod4";
 
@@ -157,17 +177,6 @@
           };
         };
       };
-
-      # Unfortunately, there is (to my knowledge) not a way to configure xinitrc through nix, so we'll write it manually
-
-      home.file.".xinitrc".text = ''
-        #!/usr/bin/env sh
-
-        # Start i3
-        #exec i3
-        i3
-      '';
-      # environment.pathsToLink = [ "/libexec" ];
     };
   };
 }

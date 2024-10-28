@@ -77,14 +77,14 @@ let
       "/media/Work" = {
         device = "/dev/disk/by-uuid/203ECDA4274108EA";
         fsType = "ntfs";
-        options = [ "nofail" "fmask=133" "dmask=022" ];
+        options = [ "nofail" "uid=1000" "gid=100" "fmask=133" "dmask=022" ];
       };
 
       # Mount Temporary Framework SSD
       "/media/Inbox" = {
         device = "/dev/disk/by-uuid/11CA8534042ADA73";
         fsType = "ntfs";
-        options = [ "nofail" "fmask=133" "dmask=022" ];
+        options = [ "nofail" "uid=1000" "gid=100" "fmask=133" "dmask=022" ];
       };
     };
 

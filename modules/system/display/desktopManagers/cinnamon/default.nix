@@ -8,9 +8,6 @@
     # Setup XORG and Desktop variables if not already set
     custom.system.display.xorg.enable = true;
 
-    # We need startx for cinnamon
-    custom.system.display.windowManagers.startx.enable = true;
-
     # Install Cinnamon
     services.xserver.desktopManager.cinnamon.enable = true;
   };

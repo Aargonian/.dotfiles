@@ -13,8 +13,9 @@
       home.packages = with pkgs; [
         xorg.xinit
       ];
+
       # Unfortunately, there is (to my knowledge) not a way to configure xinitrc through nix, so we'll write it manually
-      home.file."Data/Configuration/RC/xinitrc".text = ''
+      home.file.".xinitrc".text = ''
         #!/usr/bin/env sh
 
         # start cinnamon

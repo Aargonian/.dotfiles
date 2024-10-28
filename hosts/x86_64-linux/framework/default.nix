@@ -32,6 +32,10 @@ let
         power-profiles-daemon.enable = true;
       };
 
+      servers = {
+        ssh.enable = true;
+      };
+
       programs = {
         # Package Sets
         audio.all = true;

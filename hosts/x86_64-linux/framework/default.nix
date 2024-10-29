@@ -28,6 +28,7 @@ let
       };
 
       services = {
+        avahi.enable = true;
         greetd.enable = true;
         lact.enable = false;
         power-profiles-daemon.enable = true;

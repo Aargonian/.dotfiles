@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./avahi.nix
     ./fprintd.nix
     ./greetd.nix
     ./lact.nix

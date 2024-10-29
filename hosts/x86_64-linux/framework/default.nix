@@ -18,6 +18,7 @@ let
           hostname = hostname;
           vpn.enable = true;
         };
+
         display.enable = true;
         display.desktopManagers.cinnamon.enable = true;
         display.windowManagers.i3.enable = true;
@@ -28,7 +29,7 @@ let
 
       services = {
         greetd.enable = true;
-        lact.enable = true;
+        lact.enable = false;
         power-profiles-daemon.enable = true;
       };
 
@@ -56,7 +57,7 @@ let
 
     fileSystems = {
       "/" = {
-        device = "/dev/disk/by-uuid/9e412de9-bef7-4747-9116-c01582fb22c1";
+	device = "/dev/disk/by-uuid/32231aaa-78be-4203-ab2d-3590d33438b7";
         fsType = "btrfs";
       };
 
@@ -74,25 +75,25 @@ let
       };
 
       # Mount Framework Portable SSD if Present (Usually in the left slot)
-      "/media/Work" = {
-        device = "/dev/disk/by-uuid/203ECDA4274108EA";
-        fsType = "ntfs";
-        options = [ "nofail" "uid=1000" "gid=100" "fmask=133" "dmask=022" ];
-      };
+#     "/media/Work" = {
+#       device = "/dev/disk/by-uuid/203ECDA4274108EA";
+#       fsType = "ntfs";
+#       options = [ "nofail" "uid=1000" "gid=100" "fmask=133" "dmask=022" ];
+#     };
 
-      # Mount Temporary Framework SSD
-      "/media/Inbox" = {
-        device = "/dev/disk/by-uuid/11CA8534042ADA73";
-        fsType = "ntfs";
-        options = [ "nofail" "uid=1000" "gid=100" "fmask=133" "dmask=022" ];
-      };
+#     # Mount Temporary Framework SSD
+#     "/media/Inbox" = {
+#       device = "/dev/disk/by-uuid/11CA8534042ADA73";
+#       fsType = "ntfs";
+#       options = [ "nofail" "uid=1000" "gid=100" "fmask=133" "dmask=022" ];
+#     };
     };
 
     swapDevices = [ ];
 
     boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "usbhid" "sd_mod" ];
-    boot.initrd.kernelModules = [ "amdgpu" ];
-    boot.kernelModules = [ "kvm-amd" ];
+    #boot.initrd.kernelModules = [ "amdgpu" ];
+    #boot.kernelModules = [ "amdgpu" ];
     boot.extraModulePackages = [ ];
 
     # Mediatek Driver fix for Framework
@@ -106,13 +107,13 @@ let
     hardware.enableRedistributableFirmware = true;
 
     # Graphic Stuff
-    hardware.opengl = {
-      extraPackages = with pkgs; [ amdvlk ];
-      extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-    };
+#   hardware.opengl = {
+#     extraPackages = with pkgs; [ amdvlk ];
+#     extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
+#     enable = true;
+#     driSupport = true;
+#     driSupport32Bit = true;
+#   };
 
     # Add Raspberry Pi Server to Hosts
     networking.extraHosts = ''
@@ -134,7 +135,9 @@ in
     modules = [
       config-path
       users-path
-      inputs.nixos-hardware.nixosModules.framework-16-7040-amd
+
+#     inputs.nixos-hardware.nixosModules.framework-16-7040-amd
+
       inputs.home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;

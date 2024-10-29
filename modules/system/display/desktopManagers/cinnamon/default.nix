@@ -9,6 +9,11 @@
     custom.system.display.xorg.enable = true;
 
     # Install Cinnamon
-    services.xserver.desktopManager.cinnamon.enable = true;
+    services.xserver = {
+      desktopManager.cinnamon.enable = true;
+
+      # For whatever reason, startx is needed to start cinnamon with greetd
+      displayManager.startx.enable = true;
+    };
   };
 }

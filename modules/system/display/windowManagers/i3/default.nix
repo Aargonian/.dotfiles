@@ -30,42 +30,16 @@
 
     # Recommends by NixOS Wiki for some reason?
     environment.pathsToLink = [ "/libexec" ];
-
-    services.xserver = {
-      desktopManager = {
-        xterm.enable = false;
-      };
-
-      displayManager = {
-        defaultSession = "none+i3";
-      };
-
-      windowManager.i3 = {
-        enable = true;
-        package = pkgs.i3-gaps;
-        extraPackages = with pkgs; [
-          dmenu
-          i3status
-          i3lock
-        ];
-      };
-    };
+    environment.systemPackages = with pkgs; [
+      dmenu
+      i3status
+      i3lock
+      feh
+      dconf
+      lxappearance
+    ];
 
     home-manager.users.${config.custom.username} = {
-
-      home.packages = with pkgs; [
-        # Make things look nicer
-        lxappearance
-
-        # Necessary Packages to be Usable
-        i3status
-        dmenu
-        feh
-
-        # Necessary to save settings for certain gtk applications
-        dconf
-      ];
-
       xsession.windowManager.i3 = {
         enable = true;
         package = pkgs.i3-gaps;
@@ -75,7 +49,7 @@
           fonts = {
             names = [ "xft:URWGothic-Book 11" ];
             style = "Bold Semi-Condensed";
-            size = 11.0;
+            size = 16.0;
           };
 
           floating = {

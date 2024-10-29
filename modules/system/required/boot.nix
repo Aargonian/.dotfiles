@@ -8,5 +8,5 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Ensure NTFS is supported
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = [ "ntfs" "btrfs" ];
 }

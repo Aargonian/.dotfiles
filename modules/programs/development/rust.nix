@@ -8,6 +8,7 @@
       #      rustc
       rustup
       ripgrep
+      rust-analyzer
     ];
 
     # TODO: Make a nix shell to solve this issue

@@ -9,6 +9,9 @@
       gcc
       gnumake
       automake
+
+      sqlite
+      jq
     ];
   };
 }

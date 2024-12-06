@@ -69,11 +69,11 @@ let
       };
 
       # Mount the big data partition
-      "/media/Data" = {
-        device = "/dev/disk/by-uuid/7b75839e-56c3-4e31-8d4e-a69a61cdc653";
-        fsType = "btrfs";
-        options = [ "nofail" ];
-      };
+#     "/media/Data" = {
+#       device = "/dev/disk/by-uuid/7b75839e-56c3-4e31-8d4e-a69a61cdc653";
+#       fsType = "btrfs";
+#       options = [ "nofail" ];
+#     };
 
       # Mount Framework Portable SSD if Present (Usually in the left slot)
 #     "/media/Work" = {

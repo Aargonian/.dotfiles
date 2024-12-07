@@ -7,6 +7,8 @@ let
     ffmpeg
     zip
     unzip
+    lsof
+    tmux
     epubcheck
   ];
 

@@ -4,112 +4,33 @@
     home-manager.users.${config.custom.username} = {
       programs.zsh = {
         enable = true;
-        dotDir = lib.mkIf config.custom.useHomeDataDir "/${config.custom.appDataRelative}/ZSH";
+        dotDir = lib.mkIf config.custom.useHomeDataDir "/${config.custom.configsRelative}/ZSH";
+
         history = {
           extended = true;
+          path = lib.mkIf config.custom.useHomeDataDir "${config.custom.appData}/ZSH/zsh_history";
         };
+
         shellAliases = {
           vim = "nvim";
+          backup = "rsync -ahv --info=progress2 --no-i-r --partial";
         };
+
         sessionVariables = lib.mkIf config.custom.useHomeDataDir {
           DATA      = config.custom.dataDirPath;
           LOCALDATA = config.custom.localData;
           APPDATA   = config.custom.appData;
           PATH      = "$PATH:${config.custom.scripts}";
         };
+
         initExtra = ''
-          archive() {
-              local dir="$1"
-              local archive_name="$1"
-              local checksum_file="$dir/$${archive_name}-checksums.sha256"
-              local compress=false
-
-              # Check for the --compress option
-              if [[ "$2" == "--compress" ]]; then
-                  compress=true
-              fi
-
-              # Generate or update the checksum file, handling symlinks correctly
-              touch "$checksum_file" # Start with an empty checksum file
-              while IFS= read -r -d \'\' file; do
-                  if [ -L "$file" ]; then
-                      echo "Generating sha256 sum for symlink $file"
-                      echo -n "$(readlink "$file" | sha256sum | awk '{print $1}')  $file" >> "$checksum_file"
-                  else
-                      echo "Generating sha256 sum for $file"
-                      sha256sum "$file" >> "$checksum_file"
-                  fi
-              done < <(find "$dir" -type f ! -name "$(basename "$checksum_file")" -print0)
-
-              # Sort the checksum file
-              sort -o "$checksum_file" "$checksum_file"
-
-              # Create the tar archive, preserving symlinks and not following them
-              if $compress; then
-                  tar -cvJf "$${archive_name}.tar.xz" -C "$dir/.." "$(basename "$dir")"
-              else
-                  tar -cvf "$${archive_name}.tar" -C "$dir/.." "$(basename "$dir")"
-              fi
-          }
-
-          verify() {
-              local dir="$1"
-              local archive_file="$2"
-              local checksum_file="$dir/$(basename "$archive_file" .tar .tar.xz)-checksums.sha256"
-              local temp_dir=$(mktemp -d)
-
-              # Check if both the directory and tar file exist
-              if [[ ! -d "$dir" || ! -f "$archive_file" ]]; then
-                  echo "Directory or archive file not found."
-                  return 1
-              fi
-
-              # Generate the checksum file if it doesn't exist
-              if [[ ! -f "$checksum_file" ]]; then
-                  echo "Checksum file not found. Generating now..."
-                  touch "$checksum_file"
-                  while IFS= read -r -d \'\' file; do
-                      if [ -L "$file" ]; then
-                          echo "Generating sha256 sum for symlink $file"
-                          echo -n "$(readlink "$file" | sha256sum | awk '{print $1}')  $file" >> "$checksum_file"
-                      else
-                          echo "Generating sha256 sum for $file"
-                          sha256sum "$file" >> "$checksum_file"
-                      fi
-                  done < <(find "$dir" -type f ! -name "$(basename "$checksum_file")" -print0)
-                  sort -o "$checksum_file" "$checksum_file"
-              fi
-
-              # Extract the checksum file from the archive
-              tar --extract --file="$archive_file" --strip-components=1 -C "$temp_dir" "$(basename "$checksum_file")"
-
-              # Compare checksums
-              diff_files=$(diff "$checksum_file" "$temp_dir/$(basename "$checksum_file")")
-
-              if [[ -n "$diff_files" ]]; then
-                  echo "Differences found:"
-                  echo "$diff_files"
-              else
-                  echo "No differences found. The directory matches the tar archive."
-              fi
-
-              # Clean up
-              rm -rf "$temp_dir"
-          }
-
-          unarchive() {
-              local archive_file="$1"
-
-              if [[ "$${archive_file}" == *.tar.xz ]]; then
-                  tar -xvJf "$archive_file"
-              elif [[ "$${archive_file}" == *.tar ]]; then
-                  tar -xvf "$archive_file"
-              else
-                  echo "Unsupported archive format."
-                  return 1
-              fi
-          }
+          # Launch or attach to a Tmux session by default if not already in TMUX
+          if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+              # Try to attach to an existing tmux session; if none, create a new one
+              tmux attach || exec tmux
+          fi
         '';
+
         oh-my-zsh = {
           enable = true;
           custom = "$HOME/.config/oh-my-zsh/custom";

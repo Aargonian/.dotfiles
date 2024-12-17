@@ -7,6 +7,7 @@
     ./neovim.nix
     ./python.nix
     ./rust.nix
+    ./nix.nix
   ];
 
   options.custom.programs.development.all = mkEnableOption "All Development Programs";
@@ -18,6 +19,7 @@
         python.all = true;
         javascript.all = true;
         rust.all = true;
+        nix.all = true;
       };
 
       git.enable = true;

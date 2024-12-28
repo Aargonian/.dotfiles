@@ -25,6 +25,12 @@ let
           fsType = "ntfs";
           options = [ "nofail,noatime,uid=1000,gid=100,fmask=0022,dmask=0022" ];
         };
+
+        "/data/Portable" = {
+          device = "/dev/disk/by-label/Portable";
+          fsType = "ntfs";
+          options = [ "nofail,noatime,uid=1000,gid=100,fmask=0022,dmask=0022" ];
+        };
       };
 
       swapDevices = [ ];

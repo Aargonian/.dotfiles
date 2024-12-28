@@ -1,11 +1,11 @@
-{ lib, inputs, config-path, users-path, ... }:
+{ lib, inputs, config-path, profiles-path, ... }:
 let
   system-name = "x86_64-linux";
   host-args = {
     inherit inputs;
     inherit lib;
     inherit config-path;
-    inherit users-path;
+    inherit profiles-path;
     inherit system-name;
 
     # Stable Package Set

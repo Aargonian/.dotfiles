@@ -1,4 +1,4 @@
-{ lib, inputs, pkgs-unstable, system-name, config-path, users-path, ... }:
+{ lib, inputs, pkgs-unstable, system-name, config-path, profiles-path, ... }:
 let
   username = "aargonian";
   hostname = "NytegearFramework";
@@ -58,7 +58,7 @@ let
 
     fileSystems = {
       "/" = {
-	device = "/dev/disk/by-uuid/32231aaa-78be-4203-ab2d-3590d33438b7";
+    device = "/dev/disk/by-uuid/32231aaa-78be-4203-ab2d-3590d33438b7";
         fsType = "btrfs";
       };
 
@@ -69,11 +69,11 @@ let
       };
 
       # Mount the big data partition
-#     "/media/Data" = {
-#       device = "/dev/disk/by-uuid/7b75839e-56c3-4e31-8d4e-a69a61cdc653";
-#       fsType = "btrfs";
-#       options = [ "nofail" ];
-#     };
+      "/data" = {
+        device = "/dev/disk/by-label/InternalData";
+        fsType = "ntfs";
+        options = [ "nofail,noatime,uid=1000,gid=100,fmask=0022,dmask=0022" ];
+      };
 
       # Mount Framework Portable SSD if Present (Usually in the left slot)
 #     "/media/Work" = {
@@ -135,7 +135,7 @@ in
     };
     modules = [
       config-path
-      users-path
+      profiles-path
 
 #     inputs.nixos-hardware.nixosModules.framework-16-7040-amd
 
@@ -145,7 +145,7 @@ in
         home-manager.useUserPackages = true;
 
         imports = [
-          users-path
+          profiles-path
         ];
       }
 

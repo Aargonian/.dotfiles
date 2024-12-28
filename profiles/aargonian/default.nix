@@ -22,11 +22,6 @@ in
         name = "Aaron Gorodetzky";
         email = "aaron@nytework.com";
       };
-
-      system.display.windowManagers = {
-        hyprland.enable = true;
-      };
-
       programs.neovim.enable = true;
     };
 

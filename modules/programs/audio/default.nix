@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }: with lib;
+{ lib, config, pkgs, pkgs-unstable, ... }: with lib;
 #let
 #  # Define your programs with their categories and requirements
 #  programs = {
@@ -113,9 +113,10 @@
     environment.systemPackages = with pkgs; [
       pa_applet
       pavucontrol
-      ncspot
       spotify
       vlc
+    ] ++ [
+      pkgs-unstable.ncspot
     ];
   };
 }

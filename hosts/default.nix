@@ -2,13 +2,13 @@
 let
   inherit (inputs.nixpkgs) lib;
   config-path = "${self}/modules";
-  users-path = "${self}/users";
+  profiles-path = "${self}/profiles";
 
   system-args = {
     inherit lib;
     inherit inputs;
     inherit config-path;
-    inherit users-path;
+    inherit profiles-path;
   };
 
   systems = {

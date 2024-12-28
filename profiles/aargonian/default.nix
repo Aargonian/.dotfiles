@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, hostname, options, ... }:
 let
   username = "aargonian";
 in
@@ -13,16 +13,84 @@ in
 
   config = lib.mkIf config.users.aargonian.enable {
     custom = {
+      ####################################################################
+      # Basics
+      ####################################################################
       username = username;
 
-      fonts.useNerdFont = true;
-
+      ####################################################################
+      # System
+      ####################################################################
       programs.git = {
         enable = true;
         name = "Aaron Gorodetzky";
         email = "aaron@nytework.com";
       };
+
+      system = {
+        audio.enable = true;
+        bluetooth.enable = true;
+        filesystem.gvfs.enable = true;
+        networking = {
+          enable = true;
+          hostname = hostname;
+          vpn.enable = true;
+        };
+
+        display.enable = true;
+        display.desktopManagers.cinnamon.enable = true;
+        display.windowManagers.i3.enable = true;
+
+        # Enable Virtualbox
+        virtualization.virtualbox.host = true;
+      };
+
+      ####################################################################
+      # Services
+      ####################################################################
+      services = {
+        avahi.enable = true;
+        greetd.enable = true;
+        lact.enable = false;
+        power-profiles-daemon.enable = true;
+      };
+
+      ####################################################################
+      # Servers
+      ####################################################################
+      servers = {
+        ssh.enable = true;
+      };
+
+      ####################################################################
+      # Development
+      ####################################################################
       programs.neovim.enable = true;
+
+      ####################################################################
+      # UI
+      ####################################################################
+      fonts.useNerdFont = true;
+
+      ####################################################################
+      # Programs
+      ####################################################################
+      programs = {
+        # Package Sets
+        audio.all = true;
+        development.all = true;
+        messaging.all = true;
+        other.all = true;
+        productivity.all = true;
+        security.all = true;
+        shell.all = true;
+        utility.all = true;
+
+        # Individual
+        firefox.enable = true;
+        steam.enable = true;
+        xfce4-terminal.enable = true;
+      };
     };
 
     home-manager.users.${username} = lib.mkIf config.users.aargonian.enable {

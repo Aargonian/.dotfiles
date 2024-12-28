@@ -28,21 +28,27 @@
       programs.thunar.enable = mkDefault true;
     };
 
+      # Enable i3 itself and throw in some additional useful packages
+    services.xserver.windowManager.i3 = {
+      enable = true;
+      package = pkgs.i3-gaps;
+      extraPackages = with pkgs; [
+        dmenu
+        i3status
+        i3lock
+        feh
+        dconf
+        lxappearance
+      ];
+    };
+
     # Recommends by NixOS Wiki for some reason?
     environment.pathsToLink = [ "/libexec" ];
-    environment.systemPackages = with pkgs; [
-      dmenu
-      i3status
-      i3lock
-      feh
-      dconf
-      lxappearance
-    ];
 
     home-manager.users.${config.custom.username} = {
       xsession.windowManager.i3 = {
         enable = true;
-        package = pkgs.i3-gaps;
+        package = mkDefault pkgs.i3-gaps;
         config = mkDefault {
           modifier = "Mod4";
 
@@ -70,7 +76,7 @@
           # General settings
           gaps = {
             inner = 16;
-            outer = 32;
+            outer = 16;
           };
 
           window.border = 4;

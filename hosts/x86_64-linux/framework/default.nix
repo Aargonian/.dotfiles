@@ -68,7 +68,7 @@ in
       config-path
       profiles-path
 
-#     inputs.nixos-hardware.nixosModules.framework-16-7040-amd
+      inputs.nixos-hardware.nixosModules.framework-16-7040-amd
 
       inputs.home-manager.nixosModules.home-manager
       {

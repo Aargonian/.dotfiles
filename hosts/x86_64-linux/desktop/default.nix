@@ -1,4 +1,4 @@
-{ lib, inputs, pkgs-unstable, system-name, config-path, users-path, ... }:
+{ lib, inputs, pkgs-unstable, system-name, config-path, profiles-path, ... }:
 let
   flake_system = "desktop";
   username = "aargonian";
@@ -84,14 +84,14 @@ in
     };
     modules = [
       config-path
-      users-path
+      profiles-path
       inputs.home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
 
         imports = [
-          users-path
+          profiles-path
         ];
       }
 

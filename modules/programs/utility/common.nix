@@ -14,6 +14,7 @@ let
 
   gui_programs = with pkgs; [
     gsmartcontrol
+    gparted
   ];
 in
 {

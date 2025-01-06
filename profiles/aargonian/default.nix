@@ -93,6 +93,10 @@ in
       };
     };
 
+    environment.systemPackages = with pkgs; [
+      bambu-studio
+    ];
+
     home-manager.users.${username} = lib.mkIf config.users.aargonian.enable {
 
       home.username = username;

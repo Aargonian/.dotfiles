@@ -24,11 +24,6 @@
         };
 
         initExtra = ''
-          # Launch or attach to a Tmux session by default if not already in TMUX
-          if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-              # Try to attach to an existing tmux session; if none, create a new one
-              tmux attach || exec tmux
-          fi
         '';
 
         oh-my-zsh = {

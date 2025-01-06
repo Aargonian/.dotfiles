@@ -31,6 +31,12 @@ let
           fsType = "ntfs";
           options = [ "nofail,noatime,uid=1000,gid=100,fmask=0022,dmask=0022" ];
         };
+
+        "/data/Portable/Linux" = {
+          device = "/dev/disk/by-label/LinuxPortable";
+          fsType = "btrfs";
+          options = [ "nofail,noatime,autodefrag" ];
+        };
       };
 
       swapDevices = [ ];

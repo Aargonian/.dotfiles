@@ -1,0 +1,43 @@
+export LANG=en_US.UTF-8
+export EDITOR='nvim'
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export ZSH="$HOME/.oh-my-zsh"
+
+ZSH_THEME="spaceship"
+CASE_SENSITIVE="true"
+plugins=(git)
+
+zstyle ':omz:update' mode reminder
+source $ZSH/oh-my-zsh.sh
+
+# Aliases
+alias vim='nvim'
+alias backup='rsync -ahv --info=progress2 --no-i-r --partial'
+
+# Spaceship Settings
+SPACESHIP_PROMPT_ORDER=(
+  time          # Time stamps
+  user          # Username section
+  dir           # Current directory
+  git           # Git branch
+  host          # Hostname section
+  exec_time     # Execution time
+  line_sep      # Line break
+  jobs          # Background jobs indicator
+  exit_code     # Exit code section
+  char          # Prompt character
+)
+
+SPACESHIP_TIME_SHOW=true
+SPACESHIP_TIME_FORMAT='%D{%H:%M:%S.%.}'
+SPACESHIP_DIR_TRUNC=0
+SPACESHIP_DIR_TRUNC_REPO=false
+
+# Source Cargo Directory
+source $HOME/.cargo/env
+
+# Launch or attach to a Tmux session by default if not already in TMUX
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+    # Try to attach to an existing tmux session; if none, create a new one
+    tmux attach || exec tmux
+fi

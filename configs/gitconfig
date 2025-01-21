@@ -1,0 +1,5 @@
+[user]
+	email = aaron@nytework.com
+	name = Aaron Gorodetzky
+[credential]
+	helper = store --file ~/.git-credentials

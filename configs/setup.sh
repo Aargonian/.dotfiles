@@ -3,7 +3,7 @@
 # Settings
 USER_HOME="$HOME"
 USER_LOCAL="$USER_HOME/.local"
-USER_CONFIGS="$USER_HOME/.configs"
+USER_CONFIGS="$USER_HOME/.config"
 USER_CACHE="$USER_HOME/.cache"
 
 DATA_LOC="$USER_HOME/Data"

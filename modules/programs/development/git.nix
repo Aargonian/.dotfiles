@@ -39,16 +39,12 @@
       userName = config.custom.programs.git.name;
       userEmail = config.custom.programs.git.email;
       ignores = [
-        "*~"
         "*.swp"
-        "notes"
       ];
 
       extraConfig = {
         init.defaultBranch = "main";
-        credential.helper = "${
-          pkgs.git.override { withLibsecret = true; }
-        }/bin/git-credential-libsecret";
+        credential.helper = "store --file ~/.git-credentials";
       };
 
     };

@@ -1,4 +1,4 @@
-{ lib, config, pkgs, hostname, options, ... }:
+{ lib, config, pkgs, hostname, ... }:
 let
   username = "aargonian";
 in
@@ -40,6 +40,7 @@ in
         display.enable = true;
         display.desktopManagers.cinnamon.enable = true;
         display.windowManagers.i3.enable = true;
+        display.windowManagers.hyprland.enable = true;
 
         # Enable Virtualbox
         virtualization.virtualbox.host = true;

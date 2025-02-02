@@ -25,6 +25,7 @@
         wl-clipboard
         wl-screenrec
         wlr-randr
+        wev           # Input Event Reader (Determine what keyboard scancodes are etc.)
 
         # We need a polkit agent
         lxqt.lxqt-policykit
@@ -43,7 +44,7 @@
         enable = true;
         xwayland.enable = true;
         settings = {
-          "$mod" = "Mod4";
+          "$mod" = "Mod1";
 
           debug = {
             disable_logs = false;
@@ -75,7 +76,7 @@
             "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
             "col.inactive_border" = "rgba(595959aa)";
 
-            layout = "dwindle";
+            layout = "master";
 
             # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
             allow_tearing = false;
@@ -96,6 +97,7 @@
             shadow_render_power = 3;
             "col.shadow" = "rgba(1a1a1aee)";
           };
+
           animations = {
             enabled = "yes";
 
@@ -112,34 +114,46 @@
               "workspaces, 1, 6, default"
             ];
           };
+
           dwindle = {
               # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
               # master switch for pseudotiling. Enabling is bound to mod + P in the keybinds section below
               pseudotile = "yes";
               preserve_split = "yes"; # you probably want this
           };
+
           master = {
-              # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
               new_on_active= "after";
+              mfact = "0.50";
+
+              # New Windows become sub-windows, first window is master
+              new_status = "slave";
+
+              # Put the master window in the center
+              orientation = "center";
           };
+
           gestures = {
               # See https://wiki.hyprland.org/Configuring/Variables/ for more
               workspace_swipe = true;
               workspace_swipe_fingers = 4;
           };
+
           misc = {
               # See https://wiki.hyprland.org/Configuring/Variables/ for more
               force_default_wallpaper = -1; # Set to 0 or 1 to disable the anime mascot wallpapers
           };
+
           windowrule = [
             "pseudo, fcitx"
           ];
+
           windowrulev2 = [
             "suppressevent maximize, class:.*" # You'll probably like this.
             #"opacity 0.95 0.50, title:(.*)$"
           ];
 
-      # Making things not break in Wayland
+          # Making things not break in Wayland
           env = [
             "QT_QPA_PLATFORM,wayland;xcb,"
             "GDK_BACKEND,wayland,x11,"
@@ -148,6 +162,12 @@
             "XDG_SESSION_DESKTOP,Hyprland"
             "XDG_CURRENT_DESKTOP,Hyprland"
             "CLUTTER_BACKEND,wayland"
+          ];
+
+          bindm = [
+            # Move with LMB, Resize with RMB
+            "$mod, mouse:272, movewindow"
+            "$mod, mouse:273, resizewindowpixel"
           ];
 
           bind = [
@@ -162,10 +182,6 @@
             # Dwindle
             "$mod SHIFT, t, pseudo,"
             "$mod, V, togglesplit,"
-
-            # Move with LMB, Resize with RMB
-            "$mod, mouse:272, movewindow"
-            "$mod, mouse:273, resizewindowpixel"
 
             # Move window with Keyboard
             "$mod SHIFT, h, movewindow, l"

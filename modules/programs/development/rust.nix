@@ -4,10 +4,10 @@
 
   config = mkIf config.custom.programs.development.rust.all {
     environment.systemPackages = with pkgs; [
-      cargo
-      #      rustc
+      # cargo
+      # rustc
+      #ripgrep
       rustup
-      ripgrep
     ];
 
     # TODO: Make a nix shell to solve this issue

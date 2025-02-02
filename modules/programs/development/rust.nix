@@ -4,9 +4,6 @@
 
   config = mkIf config.custom.programs.development.rust.all {
     environment.systemPackages = with pkgs; [
-      # cargo
-      # rustc
-      #ripgrep
       rustup
     ];
 

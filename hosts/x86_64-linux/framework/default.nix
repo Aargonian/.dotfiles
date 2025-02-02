@@ -15,7 +15,7 @@ let
         };
 
         "/boot" = {
-	  device = "/dev/disk/by-uuid/2AFA-3BFC";
+          device = "/dev/disk/by-uuid/2AFA-3BFC";
           fsType = "vfat";
           options = [ "fmask=0022" "dmask=0022" ];
         };
@@ -32,8 +32,8 @@ let
           options = [ "nofail,noatime,uid=1000,gid=100,fmask=0022,dmask=0022" ];
         };
 
-        "/data/Portable/Linux" = {
-          device = "/dev/disk/by-label/LinuxPortable";
+        "/data/LinuxData" = {
+          device = "/dev/disk/by-label/LinuxData";
           fsType = "btrfs";
           options = [ "nofail,noatime,autodefrag" ];
         };

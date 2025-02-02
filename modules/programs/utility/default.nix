@@ -7,6 +7,7 @@
     ./printing.nix
     ./thunar.nix
     ./tigervnc.nix
+    ./tmux.nix
     ./touchpad.nix
     ./via.nix
   ];
@@ -24,6 +25,7 @@
       printing.enable = true;
       thunar.enable = true;
       tigervnc.enable = true;
+      tmux.enable = true;
       touchpad.enable = true;
       via.enable = true;
     };

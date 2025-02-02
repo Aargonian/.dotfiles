@@ -8,7 +8,6 @@ let
     zip
     unzip
     lsof
-    tmux
     epubcheck
   ];
 

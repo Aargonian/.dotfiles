@@ -51,7 +51,7 @@ in
       ####################################################################
       services = {
         avahi.enable = true;
-        greetd.enable = true;
+        greetd.enable = false;
         lact.enable = false;
         power-profiles-daemon.enable = true;
       };

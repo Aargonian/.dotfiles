@@ -4,6 +4,7 @@
     ./anyrun
     ./waybar
 
+    ./foliate.nix
     ./liferea.nix
     ./transmission.nix
   ];
@@ -14,6 +15,7 @@
     custom.programs = {
       transmission.enable = true;
       liferea.enable = true;
+      foliate.enable = true;
     };
   };
 }

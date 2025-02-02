@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }: with lib;
+{ lib, pkgs, ... }: with lib;
 {
   options.custom.system.shell = {
     package = mkOption {
@@ -7,8 +7,5 @@
       example = pkgs.bash;
       description = "Choose a preferred shell program";
     };
-  };
-
-  config = {
   };
 }

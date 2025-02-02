@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }: with lib;
+{ lib, config, ... }: with lib;
 {
   options.custom.programs.touchpad.enable = mkEnableOption "Touchpad drivers from libinput";
 

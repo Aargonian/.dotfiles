@@ -13,6 +13,8 @@
 
     custom.programs = {
       thunderbird.enable = true;
+      hexchat.enable = true;
+      discord.enable = true;
     };
   };
 }

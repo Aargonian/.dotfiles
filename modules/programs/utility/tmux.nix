@@ -86,7 +86,7 @@
           set -g status-right-length 50
 
           # Tab Styles
-          setw -g window-status-current-style 'fg=colour231 bg=colour0'
+          setw -g window-status-current-style 'fg=colour231 bg=blue'
           setw -g window-status-current-format ' #I #W #F '
           setw -g window-status-style 'fg=white bg=colour0'
           setw -g window-status-format ' #I #[fg=white]#W #[fg=colour226]#F '

@@ -1,6 +1,8 @@
 { ... }:
 {
   imports = [
+    ./program_list.nix
+
     ./audio
     ./browsers
     ./development

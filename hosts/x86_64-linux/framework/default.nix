@@ -10,12 +10,12 @@ let
 
       fileSystems = {
         "/" = {
-          device = "/dev/disk/by-label/ROOT_SYS";
+          device = "/dev/disk/by-label/NixRoot";
           fsType = "btrfs";
         };
 
         "/boot" = {
-          device = "/dev/disk/by-uuid/2AFA-3BFC";
+          device = "/dev/disk/by-label/BootRoot";
           fsType = "vfat";
           options = [ "fmask=0022" "dmask=0022" ];
         };

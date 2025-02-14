@@ -164,8 +164,12 @@
 }
 
 #window {
+    color: @black;
+    background: @brblue;
+    /*
     margin-right: 35pt;
     margin-left: 35pt;
+    */
 }
 
 #pulseaudio {
@@ -279,5 +283,11 @@
 #custom-arrow10 {
     font-size: 20pt;
     color: @unfocused;
-    background: transparent;
+    background: @brblue;
+}
+
+#custom-arrow11 {
+    font-size: 20pt;
+    color: @brblue;
+    background: @transparent;
 }

@@ -50,6 +50,10 @@
       "format": "",
       "tooltip": false
     },
+    "custom/arrow11": {
+      "format": "",
+      "tooltip": false
+    },
     "custom/arrow2": {
       "format": "",
       "tooltip": false
@@ -90,7 +94,7 @@
     },
     "height": 32,
     "hyprland/workspaces": {
-      "active-only": false,
+      "active-only": true,
       "all-outputs": true,
       "format": "{name}",
       "format-window-separator": "\n",
@@ -115,6 +119,7 @@
       "hyprland/workspaces",
       "custom/arrow10",
       "hyprland/window",
+      "custom/arrow11",
       "hyprland/submap"
     ],
     "modules-right": [

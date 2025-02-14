@@ -3,3 +3,5 @@
 	name = Aaron Gorodetzky
 [credential]
 	helper = store --file ~/.git-credentials
+[init]
+	defaultBranch = main

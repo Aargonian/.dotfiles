@@ -1,0 +1,193 @@
+[
+  {
+    "battery": {
+      "bat-compatibility": true,
+      "format": "{icon} {capacity}% ({time}) ({power:.2f}W)",
+      "format-alt": "{icon} Health: {health}% {power:.2f}W",
+      "format-charging": " {capacity}% ({time})",
+      "format-charging-full": " {capacity}%",
+      "format-full": "{icon} {capacity}%",
+      "format-icons": [
+        "  ",
+        "  ",
+        "  ",
+        "  ",
+        "  "
+      ],
+      "format-time": "{H}:{M:02}",
+      "interval": 2,
+      "states": {
+        "critical": 15,
+        "warning": 30
+      },
+      "tooltip": false
+    },
+    "clock#date": {
+      "format": "{:%e %b %Y}",
+      "interval": 20,
+      "tooltip": false
+    },
+    "clock#time": {
+      "format": "{:%H:%M:%S}",
+      "interval": 1,
+      "tooltip": false
+    },
+    "cpu": {
+      "format": "  {usage}%",
+      "format-alt": "  {load}",
+      "interval": 5,
+      "states": {
+        "critical": 90,
+        "warning": 70
+      },
+      "tooltip": false
+    },
+    "custom/arrow1": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/arrow10": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/arrow2": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/arrow3": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/arrow4": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/arrow5": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/arrow6": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/arrow7": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/arrow8": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/arrow9": {
+      "format": "",
+      "tooltip": false
+    },
+    "disk": {
+      "format": "💾  {specific_used:0.1f} / {specific_total:0.1f}Gb ({percentage_used}%)",
+      "interval": 30,
+      "path": "/",
+      "unit": "GiB"
+    },
+    "height": 32,
+    "hyprland/workspaces": {
+      "active-only": false,
+      "all-outputs": true,
+      "format": "{name}",
+      "format-window-separator": "\n",
+      "move-to-monitor": true,
+      "persistent-workspaces": {
+        "*": 10
+      },
+      "show-special": true
+    },
+    "layer": "top",
+    "memory": {
+      "format": "🧠 {used:0.1f}G/{total:0.1f}G",
+      "interval": 5,
+      "states": {
+        "critical": 90,
+        "warning": 70
+      },
+      "tooltip": false
+    },
+    "modules-center": [],
+    "modules-left": [
+      "hyprland/workspaces",
+      "custom/arrow10",
+      "hyprland/window",
+      "hyprland/submap"
+    ],
+    "modules-right": [
+      "custom/arrow9",
+      "network",
+      "custom/arrow8",
+      "disk",
+      "custom/arrow7",
+      "memory",
+      "custom/arrow6",
+      "cpu",
+      "custom/arrow5",
+      "temperature",
+      "custom/arrow4",
+      "battery",
+      "custom/arrow3",
+      "pulseaudio",
+      "custom/arrow2",
+      "tray",
+      "clock#date",
+      "custom/arrow1",
+      "clock#time"
+    ],
+    "network": {
+      "format-alt": "  {ipaddr}/{cidr}",
+      "format-disconnected": "No connection",
+      "format-ethernet": "  {ifname}",
+      "format-wifi": "   {essid} ({signalStrength}% @ {frequency}Ghz) ({ifname}) (↓{bandwidthDownBits}/↑{bandwidthUpBits})",
+      "interval": 5,
+      "tooltip": false
+    },
+    "position": "bottom",
+    "pulseaudio": {
+      "format": "{icon} {volume}%",
+      "format-bluetooth": "{icon} {volume}%",
+      "format-icons": {
+        "car": "  ",
+        "default": [
+          "  ",
+          "  "
+        ],
+        "hands-free": "  ",
+        "headphone": "  ",
+        "headset": "  ",
+        "phone": "  ",
+        "portable": "  "
+      },
+      "format-muted": "  ",
+      "on-click": "pavucontrol",
+      "scroll-step": 1,
+      "tooltip": false
+    },
+    "sway/language": {
+      "format": "  {}",
+      "min-length": 5,
+      "on-click": "swaymsg 'input * xkb_switch_layout next'",
+      "tooltip": false
+    },
+    "temperature": {
+      "critical-threshold": 90,
+      "format": "{icon} {temperatureC}°",
+      "format-icons": [
+        "  ",
+        "  ",
+        "  ",
+        "  ",
+        "  "
+      ],
+      "interval": 5,
+      "tooltip": false
+    },
+    "tray": {
+      "icon-size": 18
+    }
+  }
+]

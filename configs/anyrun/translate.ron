@@ -1,0 +1,5 @@
+Config(
+    prefix: ":tr ",
+    language_delimiter: " to ",
+    max_entries: 3,
+)

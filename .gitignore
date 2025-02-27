@@ -1,3 +1,6 @@
 # Ignore dynamic nwg-displays hypr configs
 configs/hyprland/monitors.conf
 configs/hyprland/workspaces.conf
+
+# Ignore btop logs
+configs/btop/btop.log

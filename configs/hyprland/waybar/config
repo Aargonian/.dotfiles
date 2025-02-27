@@ -95,13 +95,10 @@
     "height": 32,
     "hyprland/workspaces": {
       "active-only": true,
-      "all-outputs": true,
+      "all-outputs": false,
       "format": "{name}",
       "format-window-separator": "\n",
       "move-to-monitor": true,
-      "persistent-workspaces": {
-        "*": 10
-      },
       "show-special": true
     },
     "layer": "top",

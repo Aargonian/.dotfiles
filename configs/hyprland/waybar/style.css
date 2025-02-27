@@ -282,7 +282,7 @@
 
 #custom-arrow10 {
     font-size: 20pt;
-    color: @unfocused;
+    color: @active;
     background: @brblue;
 }
 

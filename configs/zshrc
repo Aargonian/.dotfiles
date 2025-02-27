@@ -17,21 +17,40 @@ alias backup='rsync -ahv --info=progress2 --no-i-r --partial'
 # Spaceship Settings
 SPACESHIP_PROMPT_ORDER=(
   time          # Time stamps
-  user          # Username section
   dir           # Current directory
   git           # Git branch
-  host          # Hostname section
   exec_time     # Execution time
+  rust
   line_sep      # Line break
   jobs          # Background jobs indicator
+  user          # Username section
+  host          # Hostname section
   exit_code     # Exit code section
   char          # Prompt character
 )
 
+# User and Hostname Config
+SPACESHIP_HOST_SHOW="always"
+SPACESHIP_HOST_PREFIX="@"
+SPACESHIP_USER_PREFIX=""
+SPACESHIP_USER_SUFFIX=""
+SPACESHIP_USER_SHOW="always"
+
+# Date and Time Config
 SPACESHIP_TIME_SHOW=true
 SPACESHIP_TIME_FORMAT='%D{%H:%M:%S.%.}'
+
+# Unknown
 SPACESHIP_DIR_TRUNC=0
 SPACESHIP_DIR_TRUNC_REPO=false
+
+# Git
+SPACESHIP_GIT_ORDER=(git_branch git_commit git_status)
+SPACESHIP_GIT_COMMIT_SHOW=true
+SPACESHIP_GIT_COMMIT_PREFIX=" at "
+
+# Rust Spaceship Config
+SPACESHIP_RUST_SHOW=true
 
 # Source Cargo Directory
 source $HOME/.cargo/env

@@ -1,2 +1,3 @@
-nvim-config/
-setup_neovim.sh
+# Ignore dynamic nwg-displays hypr configs
+configs/hyprland/monitors.conf
+configs/hyprland/workspaces.conf

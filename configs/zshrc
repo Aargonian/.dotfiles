@@ -74,25 +74,43 @@ manage() {
         return 1
     fi
 
-    local src="$(readlink -f "$1")"
-    local dst="$(readlink -f "$MANAGED_CONFIG_DIR")"
+    local src="$(realpath -s "$1")" # Don't resolve symlinks here. We need to check first.
+    local dst="$(realpath "$MANAGED_CONFIG_DIR")"
     local src_name="$(basename "$src")"
     local dst_path="$dst/$src_name"
 
+    # Ensure the given path is not a symlink
+    if [ -L "$src" ]; then
+        echo "$src is a symlink. Not managing."
+        return 1
+    fi
+
+    # Not a symlink. Re-resolve with actual path in case symlinks exist higher up the chain.
+    src="$(realpath $src)"
+
+    # Ensure the given path is not already managed
+    echo "Checking if $src is a child of $dst"
+    case "$src" in
+        "$dst"|"$dst"/*)
+        echo "Specified directory path is already being managed."
+        return 1
+        ;;
+    esac
+
     mv -n "$src" "$dst_path" || {
         echo "Failed to move $src to $dst"
-        return 2
+        return 1
     }
 
     ln -s "$dst_path" "$src" || {
         echo "Failed to create symlink $src -> $dst"
-        return 3
+        return 1
     }
 
     local CWD="$(pwd)"
 
     # Determine if we should commit this newly managed config.
-    if [ read -q "choice?Would you like to commit this directory? [n]: "; then
+    if [ read -q "choice?Would you like to commit this directory? [n]: " ]; then
         cd "$dst_path"
         git add .
         git commit -m "Begin managing $src_name config"
@@ -103,8 +121,12 @@ manage() {
     fi
 
     # Determine if user would like to move to the config dir
-    if [ read -q "choice?Would you like to move to the config directory? [n]: "; then
-        cd "$dst_path"
+    if [ read -q "choice?Would you like to move to the config directory? [n]: " ]; then
+        if [ -d "$dst_path" ]; then
+            cd "$dst_path"
+        else
+            cd "$dst"
+        fi
     else
         echo "Not leaving current directory."
     fi

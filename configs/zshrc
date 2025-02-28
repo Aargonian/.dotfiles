@@ -133,3 +133,6 @@ manage() {
 
     return 0
 }
+
+# Add zoxide
+eval "$(zoxide init zsh)"

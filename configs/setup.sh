@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
- 
+
 # Settings
 USER_HOME="$HOME"
 USER_LOCAL="$USER_HOME/.local"
@@ -26,14 +26,14 @@ SSP_LINK_NAME="$ZSH_THEMES/spaceship.zsh-theme"
 SSP_LINK_TARGET="$SSP_DIR/spaceship.zsh-theme"
 
 # Setup Basic Dirs
-mkdir -p "$USER_HOME"
-mkdir -p "$USER_CONFIGS"
-mkdir -p "$DATA_LOC"
-mkdir -p "$APPDATA"
-mkdir -p "$CONFIGS"
-mkdir -p "$SCRIPTS"
-mkdir -p "$SOURCES"
-mkdir -p "$CACHE"
+mkdir -pv "$USER_HOME"
+mkdir -pv "$USER_CONFIGS"
+mkdir -pv "$DATA_LOC"
+mkdir -pv "$APPDATA"
+mkdir -pv "$CONFIGS"
+mkdir -pv "$SCRIPTS"
+mkdir -pv "$SOURCES"
+mkdir -pv "$CACHE"
 
 # Store the current working directory
 CWD="$(pwd -P)"
@@ -48,31 +48,34 @@ FILES_TO_LINK=(
 )
 
 # Make sure git, cmake, build-essential, zsh, tmux, and other items are installed.
-sudo apt install -y git cmake build-essential zsh tmux curl wget pkg-config libssl-dev || exit 1
+sudo pacman -Syu base base-devel git cmake zsh tmux curl wget pkg-config openssh openssl
+#sudo apt install -y git cmake build-essential zsh tmux curl wget pkg-config libssl-dev || exit 1
 
 # Check if system is WSL2, and install wslu if true
 if [ -f "/proc/sys/fs/binfmt_misc/WSLInterop" ]; then
   echo "WSL2 Detected. Installing wslu..."
-  sudo apt install -y wslu || exit 1
+#  sudo apt install -y wslu || exit 1
+   sudo pacman -S wslu
 fi
 
-# Ensure Node and NPM are set up. Use Latest LTS (22.x) 
-if ! [ -x "$(command -v npm)" ] || [ -x "$(command -v node)" ]; then
-  echo "Node/NPM not found. Installing from nodesource..."
-  curl -fsSL https://deb.nodesource.com/setup_lts.x -o nodesource_setup.sh || exit 1
-  sudo -E bash nodesource_setup.sh || exit 1
-  sudo apt install nodejs -y || exit 1
+# # Ensure Node and NPM are set up. Use Latest LTS (22.x)
+# if ! [ -x "$(command -v npm)" ] || [ -x "$(command -v node)" ]; then
+#   echo "Node/NPM not found. Installing from nodesource..."
+#   curl -fsSL https://deb.nodesource.com/setup_lts.x -o nodesource_setup.sh || exit 1
+#   sudo -E bash nodesource_setup.sh || exit 1
+#   sudo apt install nodejs -y || exit 1
 
-  if ! [ -x "$(command -v npm)" ] || ! [ -x "$(command -v node)" ]; then
-    echo "Node failed to install for some reason. Exiting."
-    exit 1
-  fi
+#   if ! [ -x "$(command -v npm)" ] || ! [ -x "$(command -v node)" ]; then
+#     echo "Node failed to install for some reason. Exiting."
+#     exit 1
+#   fi
 
-  rm nodesource_setup.sh || exit 1
-fi
+#   rm nodesource_setup.sh || exit 1
+# fi
 
-# Make sure rustup is setup
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y || exit 1
+# # Make sure rustup is setup
+# curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y || exit 1
+sudo pacman -S rustup
 
 # Source the new cargo environment
 source $USER_HOME/.cargo/env
@@ -82,9 +85,10 @@ rustup component add rust-analyzer || exit 1
 rustup component add rust-docs || exit 1
 
 # Ensure ncspot, dust, and ripgrep are available
-cargo install du-dust || exit 1
-cargo install ripgrep || exit 1
-cargo install ncspot || exit 1
+# cargo install du-dust || exit 1
+# cargo install ripgrep || exit 1
+# cargo install ncspot || exit 1
+sudo pacman -S dust ripgrep ncspot
 
 # Download and setup oh-my-zsh, assuming zsh is installed
 if [ -x "$(command -v zsh)" ]; then
@@ -111,26 +115,26 @@ if [ -x "$(command -v zsh)" ]; then
 fi
 
 # Download neovim source code and build to ensure we have the latest.
-if ! [ -x "$(command -v nvim)" ]; then
-  echo "Neovim not installed. Building..."
-  cd "$SOURCES"
-  git clone "https://github.com/neovim/neovim.git" || exit 1
-  cd "neovim" || exit 1
-  git checkout "v$NEOVIM_VERSION" || exit 1
+# if ! [ -x "$(command -v nvim)" ]; then
+#   echo "Neovim not installed. Building..."
+#   cd "$SOURCES"
+#   git clone "https://github.com/neovim/neovim.git" || exit 1
+#   cd "neovim" || exit 1
+#   git checkout "v$NEOVIM_VERSION" || exit 1
 
-  # Ensure Neovim Build Prereqs are installed
-  sudo apt install -y ninja-build gettext cmake unzip curl build-essential || exit 1
+#   # Ensure Neovim Build Prereqs are installed
+#   sudo apt install -y ninja-build gettext cmake unzip curl build-essential || exit 1
 
-  # Do the build
-  make CMAKE_BUILD_TYPE=RelWithDebInfo || exit 1
-  sudo make install || exit 1
+#   # Do the build
+#   make CMAKE_BUILD_TYPE=RelWithDebInfo || exit 1
+#   sudo make install || exit 1
 
-  # Setup my neovim config
-  cd "USER_HOME"
-  git clone "https://github.com/aargonian/nvim-config" "$CONFIGS/Neovim Config" || exit 1
-  ln -s "$CONFIGS/Neovim Config" "$USER_CONFIGS/nvim" || exit 1
-  cd "$CWD"
-fi
+#   # Setup my neovim config
+#   cd "USER_HOME"
+#   git clone "https://github.com/aargonian/nvim-config" "$CONFIGS/Neovim Config" || exit 1
+#   ln -s "$CONFIGS/Neovim Config" "$USER_CONFIGS/nvim" || exit 1
+#   cd "$CWD"
+# fi
 
 link_config() {
   local rel_cwd="$1"

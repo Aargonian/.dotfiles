@@ -136,3 +136,17 @@ manage() {
 
 # Add zoxide
 eval "$(zoxide init zsh)"
+
+# MACOS
+# zoxide setup
+#eval "$(zoxide init zsh)"
+#alias cd="z"
+#
+#alias download="yt-dlp -f bestvideo+bestaudio --merge-output-format mp4 --embed-thumbnail --embed-subs --write-auto-sub --sub-lang \"en.*\" --embed-chapters --embed-metadata --embed-info-json -o '%(timestamp>%Y%m%d - %H%M%S)s - %(id)s - %(uploader)s - %(title)s.%(ext)s'"
+#
+## Keep both x86_64 and arm64 Homebrew
+#if [ "$(arch)" = "arm64" ]; then
+#    eval "$(/opt/homebrew/bin/brew shellenv)"
+#else
+#    eval "$(/usr/local/bin/brew shellenv)"
+#fi

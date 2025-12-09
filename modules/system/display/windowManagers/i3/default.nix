@@ -31,7 +31,7 @@
       # Enable i3 itself and throw in some additional useful packages
     services.xserver.windowManager.i3 = {
       enable = true;
-      package = pkgs.i3-gaps;
+      package = pkgs.i3;
       extraPackages = with pkgs; [
         dmenu
         i3status
@@ -48,7 +48,7 @@
     home-manager.users.${config.custom.username} = {
       xsession.windowManager.i3 = {
         enable = true;
-        package = mkDefault pkgs.i3-gaps;
+        package = mkDefault pkgs.i3;
         config = mkDefault {
           modifier = "Mod4";
 

@@ -31,9 +31,7 @@
         lxqt.lxqt-policykit
 
         # Screensharing
-        xwaylandvideobridge
         xdg-desktop-portal-hyprland
-        xdg-desktop-portal-gtk
 
         # We need unstable nwg-displays due to https://github.com/nwg-piotr/nwg-displays/issues/64
         pkgs-unstable.nwg-displays

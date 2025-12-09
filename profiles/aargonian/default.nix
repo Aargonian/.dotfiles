@@ -3,9 +3,7 @@ let
   username = "aargonian";
 in
 {
-  imports = [
-    ./directories.nix
-  ];
+  imports = [];
 
   options.users.aargonian = {
     enable = lib.mkEnableOption "Enable aargonian";

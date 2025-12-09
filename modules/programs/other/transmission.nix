@@ -5,7 +5,7 @@
   config = mkIf config.custom.programs.transmission.enable {
     home-manager.users.${config.custom.username} = {
       home.packages = with pkgs; [
-        transmission-qt
+        transmission_4-qt
       ];
     };
   };

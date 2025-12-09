@@ -5,7 +5,7 @@
   config = mkIf config.custom.programs.gnome-terminal.enable {
     home-manager.users.${config.custom.username} = {
       home.packages = with pkgs; [
-        gnome.gnome-terminal
+        gnome-terminal
       ];
     };
   };

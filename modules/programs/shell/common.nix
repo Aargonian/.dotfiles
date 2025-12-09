@@ -12,7 +12,7 @@
       htop
       tree
       nmon
-      du-dust
+      dust
       udisks
       parted
 

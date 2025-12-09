@@ -6,7 +6,7 @@
 
   config = mkIf config.custom.fonts.useNerdFont {
     fonts.packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "Noto" ]; })
+      nerd-fonts.noto
     ];
   };
 }

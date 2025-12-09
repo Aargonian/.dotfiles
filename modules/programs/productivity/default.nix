@@ -5,7 +5,6 @@
     ./libreoffice.nix
     ./obsidian.nix
     ./todoist.nix
-    ./xreader.nix
   ];
 
   options.custom.programs.productivity.all = mkEnableOption "All productivity applications";
@@ -18,7 +17,6 @@
       libreoffice.enable = true;
       obsidian.enable = true;
       todoist.enable = true;
-      xreader.enable = true;
     };
   };
 }

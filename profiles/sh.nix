@@ -4,27 +4,14 @@
     home-manager.users.${config.custom.username} = {
       programs.zsh = {
         enable = true;
-        dotDir = lib.mkIf config.custom.useHomeDataDir "/${config.custom.configsRelative}/ZSH";
 
         history = {
           extended = true;
-          path = lib.mkIf config.custom.useHomeDataDir "${config.custom.appData}/ZSH/zsh_history";
         };
 
         shellAliases = {
           vim = "nvim";
-          backup = "rsync -ahv --info=progress2 --no-i-r --partial";
         };
-
-        sessionVariables = lib.mkIf config.custom.useHomeDataDir {
-          DATA      = config.custom.dataDirPath;
-          LOCALDATA = config.custom.localData;
-          APPDATA   = config.custom.appData;
-          PATH      = "$PATH:${config.custom.scripts}";
-        };
-
-        initExtra = ''
-        '';
 
         oh-my-zsh = {
           enable = true;
@@ -69,7 +56,7 @@
           source = pkgs.fetchFromGitHub {
             owner = "spaceship-prompt";
             repo = "spaceship-prompt";
-            rev = "v4.16.0"; # Specify the version you want
+            rev = "v4.16.0";
             sha256 = "0yc2m5y2dcwnlrsv809x4gm07cmzk3s6pbq61iyjkpl3rhbr8dss";
           };
         };

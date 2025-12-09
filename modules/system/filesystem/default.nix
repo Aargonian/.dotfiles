@@ -9,7 +9,7 @@
     # GVFS for Samba Share
     services.gvfs = mkIf config.custom.system.filesystem.gvfs.enable {
       enable = true;
-      package = pkgs.gnome3.gvfs;
+      package = pkgs.gnome.gvfs;
     };
 
     custom.services.polkit.enable = config.custom.system.filesystem.gvfs.enable;

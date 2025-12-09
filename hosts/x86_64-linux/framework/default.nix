@@ -8,39 +8,6 @@ let
     config = {
       users.aargonian.enable = true;
 
-      fileSystems = {
-        "/" = {
-          device = "/dev/disk/by-label/NixRoot";
-          fsType = "btrfs";
-        };
-
-        "/boot" = {
-          device = "/dev/disk/by-label/BootRoot";
-          fsType = "vfat";
-          options = [ "fmask=0022" "dmask=0022" ];
-        };
-
-        "/data" = {
-          device = "/dev/disk/by-label/InternalData";
-          fsType = "ntfs";
-          options = [ "nofail,noatime,uid=1000,gid=100,fmask=0022,dmask=0022" ];
-        };
-
-        "/data/Portable" = {
-          device = "/dev/disk/by-label/Portable";
-          fsType = "ntfs";
-          options = [ "nofail,noatime,uid=1000,gid=100,fmask=0022,dmask=0022" ];
-        };
-
-        "/data/LinuxData" = {
-          device = "/dev/disk/by-label/LinuxData";
-          fsType = "btrfs";
-          options = [ "nofail,noatime,autodefrag" ];
-        };
-      };
-
-      swapDevices = [ ];
-
       boot = {
         initrd.availableKernelModules = [
           "nvme"
@@ -50,6 +17,9 @@ let
           "usbhid"
           "sd_mod"
         ];
+
+        supportedFilesystems = [ "zfs" ];
+        zfs.devNodes = "/dev/disk/by-id";
 
         extraModulePackages = [ ];
         extraModprobeConfig = ''options cfg80211 ieee80211_regdom="US"'';
@@ -61,6 +31,9 @@ let
         cpu.amd.updateMicrocode = true;
         enableRedistributableFirmware = true;
       };
+
+      # Required for ZFS
+      networking.hostId = "deadbeef";
 
       nixpkgs.hostPlatform = system-name;
     };
@@ -79,6 +52,9 @@ in
     modules = [
       config-path
       profiles-path
+
+      inputs.disko.nixosModules.disko
+      ./disko.nix
 
       inputs.nixos-hardware.nixosModules.framework-16-7040-amd
 

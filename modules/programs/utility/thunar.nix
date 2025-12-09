@@ -23,7 +23,7 @@
     # GVFS for Mount, Trash, and other filesystem tools
     services.gvfs = {
       enable = mkDefault true;
-      package = lib.mkForce pkgs.gnome3.gvfs;
+      package = lib.mkForce pkgs.gnome.gvfs;
     };
 
     environment.systemPackages = with pkgs; [

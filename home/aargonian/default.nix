@@ -100,6 +100,7 @@ in
         ./zsh.nix
         ./neovim.nix
         ./hyprland.nix
+        ./other.nix
       ];
 
       home.stateVersion = "23.11"; # Please read the comment before changing.

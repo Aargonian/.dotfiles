@@ -24,5 +24,6 @@ in
   config = {
     environment.systemPackages =  optionals (config.custom.programs.utility.cli or config.custom.programs.utility.all) cli_programs
                                ++ optionals (config.custom.programs.utility.gui or config.custom.programs.utility.all) gui_programs;
+    services.teamviewer.enable = true;
   };
 }

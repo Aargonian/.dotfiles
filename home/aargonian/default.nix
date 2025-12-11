@@ -103,6 +103,10 @@ in
         EDITOR = "nvim";
       };
 
+      imports = [
+        ./zsh.nix
+      ];
+
       home.stateVersion = "23.11"; # Please read the comment before changing.
     };
   };

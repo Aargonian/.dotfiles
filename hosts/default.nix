@@ -2,7 +2,7 @@
 let
   inherit (inputs.nixpkgs) lib;
   config-path = "${self}/modules";
-  profiles-path = "${self}/profiles";
+  profiles-path = "${self}/home";
 
   system-args = {
     inherit lib;

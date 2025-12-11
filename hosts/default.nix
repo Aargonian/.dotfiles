@@ -1,7 +1,7 @@
 { self, ...} @ inputs:
 let
   inherit (inputs.nixpkgs) lib;
-  config-path = "${self}/modules";
+  config-path = "${self}/nixos";
   profiles-path = "${self}/home";
 
   system-args = {

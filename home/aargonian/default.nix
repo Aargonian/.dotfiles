@@ -35,11 +35,6 @@ in
           vpn.enable = true;
         };
 
-        display.enable = true;
-        display.desktopManagers.cinnamon.enable = true;
-        display.windowManagers.i3.enable = true;
-        display.windowManagers.hyprland.enable = true;
-
         # Enable Virtualbox
         virtualization.virtualbox.host = true;
       };
@@ -49,8 +44,6 @@ in
       ####################################################################
       services = {
         avahi.enable = true;
-        greetd.enable = false;
-        lact.enable = false;
         power-profiles-daemon.enable = true;
       };
 
@@ -106,6 +99,7 @@ in
       imports = [
         ./zsh.nix
         ./neovim.nix
+        ./hyprland.nix
       ];
 
       home.stateVersion = "23.11"; # Please read the comment before changing.

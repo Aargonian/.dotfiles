@@ -5,7 +5,6 @@
   config = mkIf config.custom.programs.utility.applets.all {
     custom.system = {
       audio.enable = true;
-      display.enable = true;
     };
 
     environment.systemPackages = with pkgs; [

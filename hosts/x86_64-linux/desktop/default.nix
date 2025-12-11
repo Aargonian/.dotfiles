@@ -18,9 +18,6 @@ let
           hostname = hostname;
           vpn.enable = true;
         };
-        display.enable = true;
-        display.desktopManagers.cinnamon.enable = true;
-
         # Enable Virtualbox
         virtualization.virtualbox.host = true;
       };

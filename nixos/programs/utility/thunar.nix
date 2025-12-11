@@ -5,8 +5,6 @@
   };
 
   config = mkIf config.custom.programs.thunar.enable {
-    custom.system.display.enable = true;
-
     programs.thunar = {
       enable = mkDefault true;
       plugins = with pkgs.xfce; mkDefault [

@@ -4,6 +4,7 @@
     hyprland
     anyrun
     waybar
+    xwayland
 
     # Wallpaper
     hyprpaper

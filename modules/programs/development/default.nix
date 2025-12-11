@@ -4,7 +4,6 @@
     ./common.nix
     ./git.nix
     ./javascript.nix
-    ./neovim.nix
     ./python.nix
     ./rust.nix
     ./nix.nix
@@ -23,7 +22,6 @@
       };
 
       git.enable = true;
-      neovim.enable = true;
     };
   };
 }

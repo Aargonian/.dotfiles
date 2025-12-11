@@ -6,6 +6,7 @@
     home-manager.users.${config.custom.username} = {
       home.packages = with pkgs; [
         xfce.xfce4-terminal
+        kitty
       ];
     };
   };

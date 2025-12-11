@@ -5,6 +5,5 @@
     ./servers
    ./services
    ./system
-   ./home
   ];
 }

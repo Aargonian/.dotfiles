@@ -1,11 +1,6 @@
-{ lib, config, pkgs, ... }: with lib;
+{ lib, pkgs, ... }: with lib;
 {
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-  };
-
-  environment.systemPackages = with pkgs; [
+  home.packages = with pkgs; [
     neovim
     ripgrep
     fzf # For neovim telescope plugin

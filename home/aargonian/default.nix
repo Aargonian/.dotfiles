@@ -105,6 +105,7 @@ in
 
       imports = [
         ./zsh.nix
+        ./neovim.nix
       ];
 
       home.stateVersion = "23.11"; # Please read the comment before changing.

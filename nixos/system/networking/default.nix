@@ -39,7 +39,7 @@
 
 
     services = mkIf config.custom.system.networking.vpn.enable {
-      mullvad-vpn.enable = true;
+      mullvad-vpn.enable = false;
 
       # Mullvad currently requires systemd-resolved
       resolved = {

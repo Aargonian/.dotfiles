@@ -19,11 +19,11 @@ in
       ####################################################################
       # System
       ####################################################################
-      programs.git = {
-        enable = true;
-        name = "Aaron Gorodetzky";
-        email = "aaron@nytework.com";
-      };
+      #programs.git = {
+      #  enable = true;
+      #  name = "Aaron Gorodetzky";
+      #  email = "aaron@nytework.com";
+      #};
 
       system = {
         audio.enable = true;
@@ -67,22 +67,22 @@ in
       ####################################################################
       # Programs
       ####################################################################
-      programs = {
-        # Package Sets
-        audio.all = true;
-        development.all = true;
-        messaging.all = true;
-        other.all = true;
-        productivity.all = true;
-        security.all = true;
-        shell.all = true;
-        utility.all = true;
-
-        # Individual
-        firefox.enable = true;
-        steam.enable = true;
-        xfce4-terminal.enable = true;
-      };
+      #programs = {
+      #  # Package Sets
+      #  audio.all = true;
+      #  development.all = true;
+      #  messaging.all = true;
+      #  other.all = true;
+      #  productivity.all = true;
+      #  security.all = true;
+      #  shell.all = true;
+      #  utility.all = true;
+      #
+      #  # Individual
+      #  firefox.enable = true;
+      #  steam.enable = true;
+      #  xfce4-terminal.enable = true;
+      #};
     };
 
     environment.systemPackages = with pkgs; [

@@ -1,8 +1,9 @@
 { ...}:
 {
   imports = [
-   ./programs
-    ./servers
+    #   ./programs
+   ./programs.nix
+   ./servers
    ./services
    ./system
   ];
